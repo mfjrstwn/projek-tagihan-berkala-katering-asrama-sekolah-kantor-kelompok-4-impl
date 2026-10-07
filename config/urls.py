@@ -5,4 +5,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("akun.urls")),
     path("", include("pelanggan.urls")),
+    path("", include("paket.urls")),
+    path("", include("aset.urls")),
 ]

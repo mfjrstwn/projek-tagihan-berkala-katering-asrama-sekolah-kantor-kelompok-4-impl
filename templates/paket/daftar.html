@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block judul %}Paket dan tarif{% endblock %}
+{% block isi %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h4 m-0">Paket dan tarif</h1>
+  <a class="btn btn-teal" href="{% url 'paket:tambah' %}">+ Tambah paket</a>
+</div>
+
+{% if daftar_paket %}
+<div class="table-responsive bg-white border rounded">
+  <table class="table table-hover align-middle m-0">
+    <thead class="table-light">
+      <tr><th>Paket</th><th>Tarif</th><th>Satuan</th><th>Periode</th><th>Dipakai</th><th>Aksi</th></tr>
+    </thead>
+    <tbody>
+      {% for p in daftar_paket %}
+      <tr>
+        <td>{{ p.nama_paket }}</td>
+        <td>Rp {{ p.tarif|floatformat:"0g" }}</td>
+        <td>{{ p.satuan_tarif }}</td>
+        <td>{{ p.periode }}</td>
+        <td>{{ p.jumlah_pengguna }} langganan</td>
+        <td class="text-nowrap">
+          <a href="{% url 'paket:ubah' p.pk %}">Ubah</a>
+          | <a class="text-danger" href="{% url 'paket:hapus' p.pk %}">Hapus</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="card text-center py-5">
+  <div class="card-body">
+    <h2 class="h5">Belum ada paket</h2>
+    <p class="text-secondary">Tambahkan paket untuk mulai menetapkan langganan pelanggan.</p>
+    <a class="btn btn-teal" href="{% url 'paket:tambah' %}">+ Tambah paket</a>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

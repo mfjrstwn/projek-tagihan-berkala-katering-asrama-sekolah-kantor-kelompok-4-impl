@@ -45,8 +45,8 @@
     <a class="side-link {% if url_name == 'dashboard' %}aktif{% endif %}" href="{% url 'akun:dashboard' %}">Dashboard</a>
     {# Ganti span di bawah menjadi <a> bila halamannya sudah dibuat #}
     <a class="side-link {% if request.resolver_match.app_name == 'pelanggan' %}aktif{% endif %}" href="{% url 'pelanggan:daftar' %}">Pelanggan</a>
-    <span class="side-link mati" title="Belum tersedia">Aset tetap</span>
-    <span class="side-link mati" title="Belum tersedia">Paket dan tarif</span>
+    <a class="side-link {% if request.resolver_match.app_name == 'aset' %}aktif{% endif %}" href="{% url 'aset:daftar' %}">Aset tetap</a>
+    <a class="side-link {% if request.resolver_match.app_name == 'paket' %}aktif{% endif %}" href="{% url 'paket:daftar' %}">Paket dan tarif</a>
     <span class="side-link mati" title="Belum tersedia">Tagihan</span>
     <span class="side-link mati" title="Belum tersedia">Laporan</span>
   </nav>
