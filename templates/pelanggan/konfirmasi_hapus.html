@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block judul %}{% if punya_tagihan %}Nonaktifkan pelanggan{% else %}Hapus pelanggan{% endif %}{% endblock %}
+{% block isi %}
+<div class="card" style="max-width: 560px;">
+  <div class="card-body">
+    {% if punya_tagihan %}
+    <h1 class="h5">Nonaktifkan pelanggan?</h1>
+    <p class="text-secondary">
+      {{ pelanggan.nama }} sudah punya riwayat tagihan sehingga tidak bisa dihapus.
+      Pelanggan akan dinonaktifkan dan tidak ditagih lagi. Riwayat tagihan tetap tersimpan.
+    </p>
+    {% else %}
+    <h1 class="h5">Hapus pelanggan?</h1>
+    <p class="text-secondary">
+      Data {{ pelanggan.nama }} dan langganannya akan dihapus. Tindakan ini tidak bisa dibatalkan.
+    </p>
+    {% endif %}
+    <form method="post" class="d-flex justify-content-end gap-2">
+      {% csrf_token %}
+      <a class="btn btn-outline-secondary" href="{% url 'pelanggan:daftar' %}">Batal</a>
+      {% if punya_tagihan %}
+      <button type="submit" class="btn btn-teal">Nonaktifkan</button>
+      {% else %}
+      <button type="submit" class="btn btn-danger">Hapus</button>
+      {% endif %}
+    </form>
+  </div>
+</div>
+{% endblock %}
