@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block judul %}Akses ditolak{% endblock %}
+{% block isi %}
+<h1 class="h4">Akses ditolak</h1>
+<p class="text-secondary">Halaman ini tidak tersedia untuk peran Anda.</p>
+<a class="btn btn-teal" href="{% url 'akun:beranda' %}">Kembali ke beranda</a>
+{% endblock %}
