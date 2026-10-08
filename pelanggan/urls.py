@@ -7,6 +7,7 @@ app_name = "pelanggan"
 urlpatterns = [
     path("pelanggan/", views.DaftarPelangganView.as_view(), name="daftar"),
     path("pelanggan/tambah/", views.TambahPelangganView.as_view(), name="tambah"),
+    path("data-diri/", views.DataDiriView.as_view(), name="data_diri"),
     path("pelanggan/<int:pk>/ubah/", views.UbahPelangganView.as_view(), name="ubah"),
     path("pelanggan/<int:pk>/hapus/", views.HapusPelangganView.as_view(), name="hapus"),
     path(

@@ -4,9 +4,10 @@ from django.db.models import Count, ProtectedError
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, TemplateView, UpdateView
 
-from akun.akses import AdminRequiredMixin
+from akun.akses import AdminRequiredMixin, CustomerRequiredMixin
+from pelanggan.models import Langganan, Pelanggan
 
 from .forms import PaketForm
 from .models import Paket
@@ -70,3 +71,24 @@ class HapusPaketView(AdminRequiredMixin, View):
             else:
                 messages.success(request, "Data berhasil dihapus")
         return redirect("paket:daftar")
+
+
+class PaketSayaView(CustomerRequiredMixin, TemplateView):
+    """Customer melihat semua paket dan tarif. Paket yang sedang dipakainya ditandai (FR-10)."""
+
+    template_name = "paket/paket_saya.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        pelanggan = Pelanggan.objects.filter(user=self.request.user).first()
+        paket_aktif = set()
+        if pelanggan:
+            paket_aktif = set(
+                pelanggan.langganan.filter(status=Langganan.Status.AKTIF).values_list(
+                    "paket_id", flat=True
+                )
+            )
+        ctx["daftar_paket"] = [
+            {"paket": p, "aktif": p.pk in paket_aktif} for p in Paket.objects.all()
+        ]
+        return ctx

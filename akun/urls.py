@@ -10,5 +10,4 @@ urlpatterns = [
     path("masuk/", views.MasukView.as_view(), name="masuk"),
     path("keluar/", auth_views.LogoutView.as_view(), name="keluar"),
     path("dashboard/", views.DashboardSementara.as_view(), name="dashboard"),
-    path("tagihan-saya/", views.TagihanSayaSementara.as_view(), name="tagihan_saya"),
 ]

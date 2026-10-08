@@ -2,11 +2,13 @@ from datetime import date
 
 from django.contrib import messages
 from django.core.exceptions import ValidationError
+from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 
-from akun.akses import AdminRequiredMixin
+from akun.akses import AdminRequiredMixin, CustomerRequiredMixin
+from pelanggan.models import Pelanggan
 
 from . import layanan
 from .forms import FormLunas
@@ -121,3 +123,35 @@ class TandaiLunasView(AdminRequiredMixin, View):
                 messages.success(request, "Tagihan ditandai lunas")
                 return redirect("tagihan:daftar")
         return render(request, self.template_name, {"tagihan": tagihan, "form": form})
+
+
+class TagihanSayaView(CustomerRequiredMixin, TemplateView):
+    """Customer hanya melihat tagihan milik pelanggan yang terhubung ke akunnya
+    (FR-17 dan FR-22). Tidak ada alamat berparameter, jadi tagihan pelanggan lain
+    memang tidak bisa dibuka."""
+
+    template_name = "tagihan/tagihan_saya.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        pelanggan = Pelanggan.objects.filter(user=self.request.user).first()
+        ctx["pelanggan"] = pelanggan
+        if pelanggan is None:
+            return ctx
+        Tagihan.cek_tunggakan()
+        riwayat = (
+            Tagihan.objects.filter(langganan__pelanggan=pelanggan)
+            .select_related("langganan__paket")
+            .order_by("-periode")
+        )
+        ctx["riwayat"] = riwayat
+        ctx["tagihan_bulan_ini"] = riwayat.filter(
+            periode=layanan.periode_sekarang()
+        ).first()
+        ctx["total_belum_lunas"] = (
+            riwayat.exclude(status=Tagihan.Status.LUNAS).aggregate(total=Sum("jumlah"))[
+                "total"
+            ]
+            or 0
+        )
+        return ctx

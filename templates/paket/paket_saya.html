@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block judul %}Paket dan tarif{% endblock %}
+{% block isi %}
+<h1 class="h4 mb-3">Paket dan tarif</h1>
+{% if daftar_paket %}
+<div class="row g-3">
+  {% for item in daftar_paket %}
+  <div class="col-md-4">
+    <div class="card h-100" {% if item.aktif %}style="border: 2px solid #0F766E;"{% endif %}>
+      <div class="card-body">
+        {% if item.aktif %}<span class="badge text-bg-success mb-2">Paket Anda</span><br>{% endif %}
+        <h2 class="h6">{{ item.paket.nama_paket }}</h2>
+        <div class="text-secondary">Rp {{ item.paket.tarif|floatformat:"0g" }} {{ item.paket.satuan_tarif|lower }}</div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="card text-center py-4"><div class="card-body">
+  <h2 class="h5">Belum ada paket</h2>
+  <p class="text-secondary m-0">Daftar paket akan muncul setelah admin menambahkannya.</p>
+</div></div>
+{% endif %}
+{% endblock %}

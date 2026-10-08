@@ -30,7 +30,7 @@ class AksesPerPeranTest(TestCase):
 
     def test_admin_ditolak_di_halaman_customer(self):
         self.client.force_login(self.admin)
-        r = self.client.get(reverse("akun:tagihan_saya"))
+        r = self.client.get(reverse("tagihan:saya"))
         self.assertEqual(r.status_code, 403)
 
     def test_beranda_mengarahkan_sesuai_peran(self):
@@ -39,7 +39,7 @@ class AksesPerPeranTest(TestCase):
         self.assertRedirects(r, reverse("akun:dashboard"), fetch_redirect_response=False)
         self.client.force_login(self.customer)
         r = self.client.get(reverse("akun:beranda"))
-        self.assertRedirects(r, reverse("akun:tagihan_saya"), fetch_redirect_response=False)
+        self.assertRedirects(r, reverse("tagihan:saya"), fetch_redirect_response=False)
 
     def test_login_benar_berhasil(self):
         r = self.client.post(

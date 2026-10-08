@@ -5,9 +5,9 @@ from django.db.models import ProtectedError
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, TemplateView, UpdateView
 
-from akun.akses import AdminRequiredMixin
+from akun.akses import AdminRequiredMixin, CustomerRequiredMixin
 
 from .forms import PelangganForm
 from .models import Pelanggan
@@ -74,3 +74,18 @@ class AktifkanPelangganView(AdminRequiredMixin, View):
         pelanggan.aktifkan()
         messages.success(request, "Pelanggan diaktifkan kembali")
         return redirect("pelanggan:daftar")
+
+
+class DataDiriView(CustomerRequiredMixin, TemplateView):
+    """Customer melihat data dirinya sendiri, hanya baca (FR-04)."""
+
+    template_name = "pelanggan/data_diri.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx["pelanggan"] = (
+            Pelanggan.objects.filter(user=self.request.user)
+            .prefetch_related("langganan__paket")
+            .first()
+        )
+        return ctx

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load format_tagihan %}
+{% block judul %}Tagihan saya{% endblock %}
+{% block isi %}
+<h1 class="h4 mb-3">Tagihan saya</h1>
+
+{% if not pelanggan %}
+<div class="alert alert-info">Akun Anda belum terhubung dengan data pelanggan. Hubungi admin.</div>
+{% else %}
+{% if pelanggan.status == "Nonaktif" %}
+<div class="alert alert-warning py-2">
+  Akun pelanggan Anda nonaktif. Anda tetap bisa melihat riwayat tagihan, tetapi tagihan baru tidak dibuat.
+</div>
+{% endif %}
+
+<div class="row g-3 mb-4">
+  <div class="col-md-3"><div class="card"><div class="card-body">
+    <div class="text-secondary small">Tagihan bulan ini</div>
+    <div class="fs-5">{% if tagihan_bulan_ini %}Rp {{ tagihan_bulan_ini.jumlah|floatformat:"0g" }}{% else %}Tidak ada{% endif %}</div>
+  </div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body">
+    <div class="text-secondary small">Status</div>
+    <div class="fs-5">
+      {% if not tagihan_bulan_ini %}-
+      {% elif tagihan_bulan_ini.status == "Lunas" %}<span class="badge text-bg-success">Lunas</span>
+      {% elif tagihan_bulan_ini.status == "Menunggak" %}<span class="badge text-bg-danger">Menunggak</span>
+      {% else %}<span class="badge text-bg-warning">{{ tagihan_bulan_ini.status }}</span>{% endif %}
+    </div>
+  </div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body">
+    <div class="text-secondary small">Jatuh tempo</div>
+    <div class="fs-5">{% if tagihan_bulan_ini %}{{ tagihan_bulan_ini.jatuh_tempo|date:"d M Y" }}{% else %}-{% endif %}</div>
+  </div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body">
+    <div class="text-secondary small">Total belum lunas</div>
+    <div class="fs-5">Rp {{ total_belum_lunas|floatformat:"0g" }}</div>
+  </div></div></div>
+</div>
+
+<h2 class="h6">Riwayat tagihan</h2>
+{% if riwayat %}
+<div class="table-responsive bg-white border rounded">
+  <table class="table table-hover align-middle m-0">
+    <thead class="table-light">
+      <tr><th>Periode</th><th>Paket</th><th>Jumlah</th><th>Jatuh tempo</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      {% for t in riwayat %}
+      <tr>
+        <td>{{ t.periode|label_periode }}</td>
+        <td>{{ t.langganan.paket.nama_paket }}</td>
+        <td>Rp {{ t.jumlah|floatformat:"0g" }}</td>
+        <td>{{ t.jatuh_tempo|date:"d M Y" }}</td>
+        <td>
+          {% if t.status == "Lunas" %}<span class="badge text-bg-success">Lunas</span>
+          {% elif t.status == "Menunggak" %}<span class="badge text-bg-danger">Menunggak</span>
+          {% else %}<span class="badge text-bg-warning">{{ t.status }}</span>{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="card text-center py-4"><div class="card-body">
+  <h2 class="h5">Belum ada tagihan</h2>
+  <p class="text-secondary m-0">Tagihan akan muncul di sini setelah dibuat.</p>
+</div></div>
+{% endif %}
+{% endif %}
+{% endblock %}
