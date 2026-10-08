@@ -14,12 +14,48 @@ from .models import Pelanggan
 
 
 class DaftarPelangganView(AdminRequiredMixin, ListView):
+    """Daftar pelanggan dengan pencarian nama, filter segmen, dan filter status (FR-03)."""
+
     template_name = "pelanggan/daftar.html"
     context_object_name = "daftar_pelanggan"
     paginate_by = 15
 
+    def _filter(self):
+        kata = self.request.GET.get("q", "").strip()
+        segmen = self.request.GET.get("segmen", "")
+        status = self.request.GET.get("status", "")
+        if segmen not in Pelanggan.Segmen.values:
+            segmen = ""
+        if status not in Pelanggan.Status.values:
+            status = ""
+        return kata, segmen, status
+
     def get_queryset(self):
-        return Pelanggan.objects.prefetch_related("langganan__paket")
+        kata, segmen, status = self._filter()
+        qs = Pelanggan.objects.prefetch_related("langganan__paket")
+        if kata:
+            qs = qs.filter(nama__icontains=kata)
+        if segmen:
+            qs = qs.filter(segmen=segmen)
+        if status:
+            qs = qs.filter(status=status)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        kata, segmen, status = self._filter()
+        parameter = self.request.GET.copy()
+        parameter.pop("page", None)
+        ctx.update(
+            kata=kata,
+            segmen_dipilih=segmen,
+            status_dipilih=status,
+            segmen_pilihan=Pelanggan.Segmen.choices,
+            status_pilihan=Pelanggan.Status.choices,
+            query_filter=parameter.urlencode(),
+            ada_filter=bool(kata or segmen or status),
+        )
+        return ctx
 
 
 class TambahPelangganView(AdminRequiredMixin, SuccessMessageMixin, CreateView):

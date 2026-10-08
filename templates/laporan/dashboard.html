@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load format_tagihan %}
+{% block judul %}Dashboard{% endblock %}
+{% block isi %}
+<h1 class="h4 mb-3">Dashboard</h1>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-3"><div class="card"><div class="card-body">
+    <div class="text-secondary small">Total tagihan {{ periode|label_periode }}</div>
+    <div class="fs-5">Rp {{ total_tagihan|floatformat:"0g" }}</div>
+  </div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body">
+    <div class="text-secondary small">Sudah lunas</div>
+    <div class="fs-5">Rp {{ total_lunas|floatformat:"0g" }}</div>
+  </div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body">
+    <div class="text-secondary small">Menunggak</div>
+    <div class="fs-5">{{ jumlah_menunggak }} tagihan</div>
+  </div></div></div>
+  <div class="col-md-3"><div class="card"><div class="card-body">
+    <div class="text-secondary small">Pelanggan aktif</div>
+    <div class="fs-5">{{ pelanggan_aktif }}</div>
+  </div></div></div>
+</div>
+
+<h2 class="h6">Rekap aset per kondisi</h2>
+<div class="row g-3 mb-4">
+  {% for kondisi, jumlah in rekap_aset %}
+  <div class="col-md-4"><div class="card"><div class="card-body">
+    {% if kondisi == "Baik" %}<span class="badge text-bg-success">{{ kondisi }}</span>
+    {% elif kondisi == "Rusak" %}<span class="badge text-bg-danger">{{ kondisi }}</span>
+    {% else %}<span class="badge text-bg-warning">{{ kondisi }}</span>{% endif %}
+    <div class="fs-5 mt-1">{{ jumlah }} aset</div>
+  </div></div></div>
+  {% endfor %}
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-2">
+  <h2 class="h6 m-0">Tagihan terbaru</h2>
+  <a href="{% url 'tagihan:daftar' %}" class="small">Lihat semua tagihan</a>
+</div>
+{% if tagihan_terbaru %}
+<div class="table-responsive bg-white border rounded">
+  <table class="table align-middle m-0">
+    <thead class="table-light"><tr><th>Pelanggan</th><th>Periode</th><th>Jumlah</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for t in tagihan_terbaru %}
+      <tr>
+        <td>{{ t.langganan.pelanggan.nama }}</td>
+        <td>{{ t.periode|label_periode }}</td>
+        <td>Rp {{ t.jumlah|floatformat:"0g" }}</td>
+        <td>
+          {% if t.status == "Lunas" %}<span class="badge text-bg-success">Lunas</span>
+          {% elif t.status == "Menunggak" %}<span class="badge text-bg-danger">Menunggak</span>
+          {% else %}<span class="badge text-bg-warning">{{ t.status }}</span>{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="card text-center py-4"><div class="card-body">
+  <h2 class="h5">Belum ada tagihan</h2>
+  <p class="text-secondary m-0">Buat tagihan pertama dari menu Tagihan.</p>
+</div></div>
+{% endif %}
+{% endblock %}

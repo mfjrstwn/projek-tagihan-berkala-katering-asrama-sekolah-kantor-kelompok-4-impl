@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "akun", "paket", "pelanggan", "aset", "tagihan",
+    'akun', 'paket', 'pelanggan', 'aset', 'tagihan','laporan',
 ]
 
 MIDDLEWARE = [

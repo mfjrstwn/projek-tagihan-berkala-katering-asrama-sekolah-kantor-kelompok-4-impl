@@ -6,6 +6,32 @@
   <a class="btn btn-teal" href="{% url 'pelanggan:tambah' %}">+ Tambah pelanggan</a>
 </div>
 
+<form method="get" class="row g-2 mb-3">
+  <div class="col-md-4">
+    <input type="search" name="q" value="{{ kata }}" class="form-control" placeholder="Cari nama pelanggan">
+  </div>
+  <div class="col-auto">
+    <select name="segmen" class="form-select">
+      <option value="">Segmen: semua</option>
+      {% for nilai, nama in segmen_pilihan %}
+      <option value="{{ nilai }}" {% if nilai == segmen_dipilih %}selected{% endif %}>{{ nama }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto">
+    <select name="status" class="form-select">
+      <option value="">Status: semua</option>
+      {% for nilai, nama in status_pilihan %}
+      <option value="{{ nilai }}" {% if nilai == status_dipilih %}selected{% endif %}>{{ nama }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto d-flex gap-2">
+    <button type="submit" class="btn btn-outline-secondary">Terapkan</button>
+    <a class="btn btn-link" href="{% url 'pelanggan:daftar' %}">Reset</a>
+  </div>
+</form>
+
 {% if daftar_pelanggan %}
 <div class="table-responsive bg-white border rounded">
   <table class="table table-hover align-middle m-0">
@@ -49,11 +75,19 @@
 
 {% if is_paginated %}
 <nav class="d-flex justify-content-end gap-3 small mt-3">
-  {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">Sebelumnya</a>{% endif %}
+  {% if page_obj.has_previous %}<a href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ page_obj.previous_page_number }}">Sebelumnya</a>{% endif %}
   <span>Halaman {{ page_obj.number }} dari {{ page_obj.paginator.num_pages }}</span>
-  {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">Berikutnya</a>{% endif %}
+  {% if page_obj.has_next %}<a href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ page_obj.next_page_number }}">Berikutnya</a>{% endif %}
 </nav>
 {% endif %}
+
+{% elif ada_filter %}
+<div class="card text-center py-5">
+  <div class="card-body">
+    <h2 class="h5">Tidak ada hasil</h2>
+    <p class="text-secondary m-0">Coba kata kunci atau filter lain.</p>
+  </div>
+</div>
 
 {% else %}
 <div class="card text-center py-5">

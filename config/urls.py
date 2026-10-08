@@ -8,4 +8,5 @@ urlpatterns = [
     path("", include("paket.urls")),
     path("", include("aset.urls")),
     path("", include("tagihan.urls")),
+    path("", include("laporan.urls")),
 ]

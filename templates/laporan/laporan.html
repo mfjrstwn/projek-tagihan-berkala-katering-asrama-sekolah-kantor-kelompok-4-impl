@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load format_tagihan %}
+{% block judul %}Laporan{% endblock %}
+{% block isi %}
+<h1 class="h4 mb-3">Laporan tagihan</h1>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col-auto">
+    <select name="periode" class="form-select">
+      {% for p in periode_pilihan %}
+      <option value="{{ p }}" {% if p == periode %}selected{% endif %}>Periode: {{ p|label_periode }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto">
+    <select name="segmen" class="form-select">
+      <option value="">Segmen: semua</option>
+      {% for nilai, nama in segmen_pilihan %}
+      <option value="{{ nilai }}" {% if nilai == segmen_dipilih %}selected{% endif %}>{{ nama }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto d-flex gap-2">
+    <button type="submit" class="btn btn-outline-secondary">Tampilkan</button>
+    <a class="btn btn-link" href="{% url 'laporan:laporan' %}">Reset</a>
+  </div>
+</form>
+
+{% if baris %}
+<div class="row g-3 mb-4">
+  <div class="col-md-4"><div class="card"><div class="card-body">
+    <div class="text-secondary small">Total tagihan</div><div class="fs-5">Rp {{ total.total|floatformat:"0g" }}</div>
+  </div></div></div>
+  <div class="col-md-4"><div class="card"><div class="card-body">
+    <div class="text-secondary small">Lunas</div><div class="fs-5">Rp {{ total.lunas|floatformat:"0g" }}</div>
+  </div></div></div>
+  <div class="col-md-4"><div class="card"><div class="card-body">
+    <div class="text-secondary small">Menunggak</div><div class="fs-5">Rp {{ total.menunggak|floatformat:"0g" }}</div>
+  </div></div></div>
+</div>
+
+<div class="table-responsive bg-white border rounded">
+  <table class="table align-middle m-0">
+    <thead class="table-light">
+      <tr><th>Segmen</th><th>Tagihan</th><th>Total</th><th>Lunas</th><th>Belum dibayar</th><th>Menunggak</th></tr>
+    </thead>
+    <tbody>
+      {% for b in baris %}
+      <tr>
+        <td>{{ b.segmen }}</td>
+        <td>{{ b.jumlah }}</td>
+        <td>Rp {{ b.total|floatformat:"0g" }}</td>
+        <td>Rp {{ b.lunas|floatformat:"0g" }}</td>
+        <td>Rp {{ b.belum|floatformat:"0g" }}</td>
+        <td>Rp {{ b.menunggak|floatformat:"0g" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot class="table-light fw-semibold">
+      <tr>
+        <td>Jumlah</td><td>{{ total.jumlah }}</td>
+        <td>Rp {{ total.total|floatformat:"0g" }}</td>
+        <td>Rp {{ total.lunas|floatformat:"0g" }}</td>
+        <td>Rp {{ total.belum|floatformat:"0g" }}</td>
+        <td>Rp {{ total.menunggak|floatformat:"0g" }}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+{% else %}
+<div class="card text-center py-5"><div class="card-body">
+  <h2 class="h5">Tidak ada hasil</h2>
+  <p class="text-secondary m-0">Coba kata kunci atau filter lain.</p>
+</div></div>
+{% endif %}
+{% endblock %}

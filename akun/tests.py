@@ -13,19 +13,19 @@ class AksesPerPeranTest(TestCase):
         cls.customer = Pengguna.objects.create_user("cust1", password="rahasia123")
 
     def test_pengguna_belum_login_dialihkan_ke_masuk(self):
-        r = self.client.get(reverse("akun:dashboard"))
+        r = self.client.get(reverse("laporan:dashboard"))
         self.assertRedirects(
-            r, f"{reverse('akun:masuk')}?next={reverse('akun:dashboard')}"
+            r, f"{reverse('akun:masuk')}?next={reverse('laporan:dashboard')}"
         )
 
     def test_admin_boleh_membuka_dashboard(self):
         self.client.force_login(self.admin)
-        r = self.client.get(reverse("akun:dashboard"))
+        r = self.client.get(reverse("laporan:dashboard"))
         self.assertEqual(r.status_code, 200)
 
     def test_customer_ditolak_di_dashboard(self):
         self.client.force_login(self.customer)
-        r = self.client.get(reverse("akun:dashboard"))
+        r = self.client.get(reverse("laporan:dashboard"))
         self.assertEqual(r.status_code, 403)
 
     def test_admin_ditolak_di_halaman_customer(self):
@@ -36,7 +36,7 @@ class AksesPerPeranTest(TestCase):
     def test_beranda_mengarahkan_sesuai_peran(self):
         self.client.force_login(self.admin)
         r = self.client.get(reverse("akun:beranda"))
-        self.assertRedirects(r, reverse("akun:dashboard"), fetch_redirect_response=False)
+        self.assertRedirects(r, reverse("laporan:dashboard"), fetch_redirect_response=False)
         self.client.force_login(self.customer)
         r = self.client.get(reverse("akun:beranda"))
         self.assertRedirects(r, reverse("tagihan:saya"), fetch_redirect_response=False)
@@ -57,5 +57,5 @@ class AksesPerPeranTest(TestCase):
     def test_logout_mengakhiri_sesi(self):
         self.client.force_login(self.admin)
         self.client.post(reverse("akun:keluar"))
-        r = self.client.get(reverse("akun:dashboard"))
+        r = self.client.get(reverse("laporan:dashboard"))
         self.assertEqual(r.status_code, 302)

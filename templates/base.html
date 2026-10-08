@@ -42,13 +42,13 @@
 <div class="d-flex">
   {% if user.is_authenticated and user.role == "Admin" %}
   <nav class="sidebar">
-    <a class="side-link {% if url_name == 'dashboard' %}aktif{% endif %}" href="{% url 'akun:dashboard' %}">Dashboard</a>
+    <a class="side-link {% if view_name == 'laporan:dashboard' %}aktif{% endif %}" href="{% url 'laporan:dashboard' %}">Dashboard</a>
     {# Ganti span di bawah menjadi <a> bila halamannya sudah dibuat #}
     <a class="side-link {% if request.resolver_match.app_name == 'pelanggan' %}aktif{% endif %}" href="{% url 'pelanggan:daftar' %}">Pelanggan</a>
     <a class="side-link {% if request.resolver_match.app_name == 'aset' %}aktif{% endif %}" href="{% url 'aset:daftar' %}">Aset tetap</a>
     <a class="side-link {% if request.resolver_match.app_name == 'paket' %}aktif{% endif %}" href="{% url 'paket:daftar' %}">Paket dan tarif</a>
     <a class="side-link {% if request.resolver_match.app_name == 'tagihan' %}aktif{% endif %}" href="{% url 'tagihan:daftar' %}">Tagihan</a>
-    <span class="side-link mati" title="Belum tersedia">Laporan</span>
+    <a class="side-link {% if view_name == 'laporan:laporan' %}aktif{% endif %}" href="{% url 'laporan:laporan' %}">Laporan</a>
   </nav>
   {% endif %}
 
