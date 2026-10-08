@@ -47,7 +47,7 @@
     <a class="side-link {% if request.resolver_match.app_name == 'pelanggan' %}aktif{% endif %}" href="{% url 'pelanggan:daftar' %}">Pelanggan</a>
     <a class="side-link {% if request.resolver_match.app_name == 'aset' %}aktif{% endif %}" href="{% url 'aset:daftar' %}">Aset tetap</a>
     <a class="side-link {% if request.resolver_match.app_name == 'paket' %}aktif{% endif %}" href="{% url 'paket:daftar' %}">Paket dan tarif</a>
-    <span class="side-link mati" title="Belum tersedia">Tagihan</span>
+    <a class="side-link {% if request.resolver_match.app_name == 'tagihan' %}aktif{% endif %}" href="{% url 'tagihan:daftar' %}">Tagihan</a>
     <span class="side-link mati" title="Belum tersedia">Laporan</span>
   </nav>
   {% endif %}

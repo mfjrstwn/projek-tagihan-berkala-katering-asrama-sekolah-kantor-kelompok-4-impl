@@ -8,7 +8,7 @@
     <form method="post" class="d-flex justify-content-end gap-2">
       {% csrf_token %}
       <a class="btn btn-outline-secondary" href="{{ url_batal }}">Batal</a>
-      <button type="submit" class="btn btn-danger">Hapus</button>
+      <button type="submit" class="btn {{ kelas_tombol|default:'btn-danger' }}">{{ teks_tombol|default:"Hapus" }}</button>
     </form>
   </div>
 </div>
