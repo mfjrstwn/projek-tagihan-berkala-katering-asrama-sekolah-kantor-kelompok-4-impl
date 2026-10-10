@@ -1,30 +1,27 @@
 {% extends "base.html" %}
 {% block judul %}Data diri{% endblock %}
 {% block isi %}
-<h1 class="h4 mb-3">Data diri</h1>
+<div class="halaman-judul">
+  <div>
+    <h1>Data diri</h1>
+    <p class="catatan">Data ini hanya bisa dilihat. Hubungi admin bila ada yang perlu diperbarui.</p>
+  </div>
+</div>
 
 {% if not pelanggan %}
 <div class="alert alert-info">Akun Anda belum terhubung dengan data pelanggan. Hubungi admin.</div>
 {% else %}
-<div class="card" style="max-width: 640px;">
-  <div class="card-body">
-    <dl class="row m-0">
-      <dt class="col-sm-4 text-secondary fw-normal">Nama</dt><dd class="col-sm-8">{{ pelanggan.nama }}</dd>
-      <dt class="col-sm-4 text-secondary fw-normal">Segmen</dt><dd class="col-sm-8">{{ pelanggan.segmen }}</dd>
-      <dt class="col-sm-4 text-secondary fw-normal">Tipe</dt><dd class="col-sm-8">{{ pelanggan.tipe }}</dd>
-      <dt class="col-sm-4 text-secondary fw-normal">Paket</dt>
-      <dd class="col-sm-8">
-        {% for l in pelanggan.langganan.all %}{{ l.paket.nama_paket }}{% if l.jumlah_porsi %} ({{ l.jumlah_porsi }} porsi){% endif %}{% if not forloop.last %}, {% endif %}{% empty %}-{% endfor %}
-      </dd>
-      <dt class="col-sm-4 text-secondary fw-normal">Status</dt>
-      <dd class="col-sm-8">
-        {% if pelanggan.status == "Aktif" %}<span class="badge text-bg-success">Aktif</span>
-        {% else %}<span class="badge text-bg-secondary">Nonaktif</span>{% endif %}
-      </dd>
-      <dt class="col-sm-4 text-secondary fw-normal">Kontak</dt><dd class="col-sm-8">{{ pelanggan.kontak }}</dd>
-      <dt class="col-sm-4 text-secondary fw-normal">Alamat</dt><dd class="col-sm-8">{{ pelanggan.alamat }}</dd>
-    </dl>
-  </div>
+<div class="card kartu-data">
+  <dl class="daftar-data">
+    <dt>Nama</dt><dd>{{ pelanggan.nama }}</dd>
+    <dt>Segmen</dt><dd>{{ pelanggan.segmen }}</dd>
+    <dt>Tipe</dt><dd>{{ pelanggan.tipe }}</dd>
+    <dt>Paket</dt>
+    <dd>{% for l in pelanggan.langganan.all %}{{ l.paket.nama_paket }}{% if l.jumlah_porsi %} ({{ l.jumlah_porsi }} porsi){% endif %}{% if not forloop.last %}, {% endif %}{% empty %}-{% endfor %}</dd>
+    <dt>Status</dt><dd>{% include "komponen/badge_status.html" with status=pelanggan.status %}</dd>
+    <dt>Kontak</dt><dd>{{ pelanggan.kontak|default:"-" }}</dd>
+    <dt>Alamat</dt><dd>{{ pelanggan.alamat|default:"-" }}</dd>
+  </dl>
 </div>
 {% endif %}
 {% endblock %}

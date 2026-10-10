@@ -1,25 +1,34 @@
 {% extends "base.html" %}
+{% load static tampilan_paket %}
 {% block judul %}Paket dan tarif{% endblock %}
 {% block isi %}
-<h1 class="h4 mb-3">Paket dan tarif</h1>
+<div class="halaman-judul tengah">
+  <div>
+    <h1>Paket dan tarif</h1>
+    <p class="catatan">Daftar paket katering beserta tarifnya. Paket yang sedang berjalan untuk Anda diberi tanda.</p>
+  </div>
+</div>
 {% if daftar_paket %}
-<div class="row g-3">
+<div class="grid-paket">
   {% for item in daftar_paket %}
-  <div class="col-md-4">
-    <div class="card h-100" {% if item.aktif %}style="border: 2px solid #0F766E;"{% endif %}>
-      <div class="card-body">
-        {% if item.aktif %}<span class="badge text-bg-success mb-2">Paket Anda</span><br>{% endif %}
-        <h2 class="h6">{{ item.paket.nama_paket }}</h2>
-        <div class="text-secondary">Rp {{ item.paket.tarif|floatformat:"0g" }} {{ item.paket.satuan_tarif|lower }}</div>
-      </div>
+  <div class="card kartu-paket{% if item.aktif %} aktif{% endif %}">
+    <div class="foto-paket">
+      <span class="inisial" aria-hidden="true">{{ item.paket.nama_paket|slice:":1" }}</span>
+      <img src="{% static item.paket.nama_paket|foto_paket %}" alt="" width="800" height="600" loading="lazy">
+      {% if item.aktif %}<span class="badge badge-paket">Paket Anda</span>{% endif %}
+    </div>
+    <div class="isi">
+      <h2>{{ item.paket.nama_paket }}</h2>
+      <div class="tarif"><span class="mata-uang">Rp</span>{{ item.paket.tarif|floatformat:"0g" }}</div>
+      <div class="satuan">{{ item.paket.satuan_tarif|lower }}</div>
     </div>
   </div>
   {% endfor %}
 </div>
 {% else %}
-<div class="card text-center py-4"><div class="card-body">
-  <h2 class="h5">Belum ada paket</h2>
+<div class="card keadaan-kosong">
+  <h2>Belum ada paket</h2>
   <p class="text-secondary m-0">Daftar paket akan muncul setelah admin menambahkannya.</p>
-</div></div>
+</div>
 {% endif %}
 {% endblock %}

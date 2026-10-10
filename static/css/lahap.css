@@ -236,3 +236,48 @@ dialog.dialog::backdrop { background: rgba(31, 42, 40, .45); }
   .ringkasan { grid-template-columns: 1fr; }
   .sapaan h1 { font-size: 1.4rem; }
 }
+
+/* ---------- 9. Paket dan data diri (Customer) ---------- */
+.grid-paket { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }   /* kartu selalu terpusat, termasuk baris terakhir */
+.kartu-paket { position: relative; flex: 1 1 16rem; max-width: 20rem; padding: 0; overflow: hidden; text-align: center; }
+.kartu-paket.aktif { border-color: var(--lh-teal); box-shadow: 0 0 0 1px var(--lh-teal); }   /* setara border 2px tanpa menggeser tata letak */
+.foto-paket { position: relative; aspect-ratio: 4 / 3; background: var(--lh-teal-lembut); display: grid; place-items: center; }
+.foto-paket .inisial { font-size: 4rem; font-weight: 800; color: var(--lh-teal); opacity: .35; }   /* cadangan bila foto belum ada */
+.foto-paket img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.foto-paket .badge-paket { position: absolute; top: .75rem; left: 50%; transform: translateX(-50%); white-space: nowrap;
+  background: var(--lh-permukaan); color: var(--lh-teal); border: 1px solid var(--lh-garis); }
+
+/* Motif nota: garis sobekan putus-putus dengan takik di kedua tepi */
+.kartu-paket .isi { position: relative; padding: 1.5rem 1.5rem 1.6rem; border-top: 2px dashed var(--lh-garis);
+  display: flex; flex-direction: column; align-items: center; }
+.kartu-paket .isi::before, .kartu-paket .isi::after {
+  content: ""; position: absolute; top: -10px; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--lh-latar); border: 1px solid var(--lh-garis);
+}
+.kartu-paket .isi::before { left: -10px; }
+.kartu-paket .isi::after { right: -10px; }
+.kartu-paket.aktif .isi { border-top-color: var(--lh-teal); }
+.kartu-paket.aktif .isi::before, .kartu-paket.aktif .isi::after { border-color: var(--lh-teal); }
+
+.kartu-paket h2 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+.kartu-paket .tarif { margin-top: .5rem; font-size: 1.75rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.kartu-paket .mata-uang { font-size: .5em; font-weight: 700; color: var(--lh-teks-redup); margin-right: .25em; vertical-align: .7em; letter-spacing: 0; }
+.kartu-paket .satuan { color: var(--lh-teks-redup); font-size: .875rem; }
+.badge-paket { background: var(--lh-teal-lembut); color: var(--lh-teal); }
+
+.kartu-data { max-width: 640px; padding: .5rem 1.5rem; }
+.daftar-data { display: grid; grid-template-columns: minmax(6rem, 10rem) 1fr; margin: 0; }
+.daftar-data dt, .daftar-data dd { margin: 0; padding: .85rem 0; border-top: 1px solid var(--lh-garis); }
+.daftar-data dt { color: var(--lh-teks-redup); font-size: .875rem; font-weight: 600; }
+.daftar-data dd { font-weight: 500; overflow-wrap: anywhere; }
+.daftar-data dt:first-of-type, .daftar-data dt:first-of-type + dd { border-top: 0; }
+
+@media (max-width: 575.98px) {
+  .daftar-data { grid-template-columns: 1fr; }
+  .daftar-data dt { padding-bottom: 0; }
+  .daftar-data dd { border-top: 0; padding-top: .15rem; }
+  .daftar-data dt:first-of-type { border-top: 0; }
+}
+
+.halaman-judul.tengah { justify-content: center; text-align: center; }
+.halaman-judul.tengah .catatan { margin-left: auto; margin-right: auto; }
