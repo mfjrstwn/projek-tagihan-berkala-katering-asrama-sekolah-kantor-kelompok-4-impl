@@ -212,3 +212,27 @@ dialog.dialog::backdrop { background: rgba(31, 42, 40, .45); }
 .dialog-isi .form-label { margin-top: .25rem; }
 .dialog-isi .galat { color: var(--lh-tunggak-fg); font-size: .8125rem; margin-top: .35rem; }
 .dialog-aksi { display: flex; justify-content: flex-end; gap: .5rem; margin-top: 1.25rem; }
+
+/* ---------- 8. Portal Customer (patokan: tagihan/tagihan_saya) ---------- */
+.sapaan { margin-bottom: 1.5rem; }
+.sapaan h1 { display: flex; align-items: center; gap: .6rem; font-size: 1.75rem; font-weight: 800; letter-spacing: -.02em; margin: 0; }
+.sapaan h1::before {            /* piring kunyit kecil, gema dari wordmark */
+  content: ""; flex: none; width: .55em; height: .55em; border-radius: 50%; background: var(--lh-kunyit);
+}
+.sapaan .catatan { margin: .3rem 0 0 calc(.55em + .6rem); color: var(--lh-teks-redup); }
+
+.ringkasan { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+.ringkasan .card { padding: 1.25rem 1.5rem; }
+.label-kecil { color: var(--lh-teks-redup); font-size: .8125rem; font-weight: 600; margin-bottom: .35rem; }
+.angka-besar { font-size: 2rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.ringkasan-lain .angka-besar { font-size: 1.5rem; font-weight: 700; }
+.meta-ringkas { display: flex; flex-wrap: wrap; gap: .5rem 2rem; margin: 1rem 0 0; padding-top: 1rem; border-top: 1px solid var(--lh-garis); }
+.meta-ringkas dt { color: var(--lh-teks-redup); font-size: .8125rem; font-weight: 600; margin-bottom: .2rem; }
+.meta-ringkas dd { margin: 0; font-weight: 600; }
+
+.judul-bagian { font-size: 1.05rem; font-weight: 700; margin: 0 0 .75rem; }
+
+@media (max-width: 767.98px) {
+  .ringkasan { grid-template-columns: 1fr; }
+  .sapaan h1 { font-size: 1.4rem; }
+}
