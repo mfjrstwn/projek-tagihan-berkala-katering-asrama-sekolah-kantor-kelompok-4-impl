@@ -1,36 +1,24 @@
-<!doctype html>
+{% load static %}<!doctype html>
 <html lang="id">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block judul %}Katering tagihan{% endblock %}</title>
+  <title>{% block judul %}lahap.in{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    :root { --teal: #0F766E; }
-    body { background: #F9FAFB; color: #111827; }
-    .app-header { height: 56px; background: #fff; border-bottom: 1px solid #E5E7EB; }
-    .brand { color: var(--teal); font-weight: 600; text-decoration: none; }
-    .btn-teal { background: var(--teal); border-color: var(--teal); color: #fff; }
-    .btn-teal:hover { background: #0b5d57; border-color: #0b5d57; color: #fff; }
-    .text-teal { color: var(--teal); }
-    .sidebar { width: 220px; flex: none; background: #F3F4F6; padding: 12px;
-               min-height: calc(100vh - 56px); }
-    .side-link { display: block; padding: 8px 12px; border-radius: 6px; color: #4B5563;
-                 text-decoration: none; margin-bottom: 4px; }
-    .side-link.aktif { background: var(--teal); color: #fff; }
-    .side-link.mati { opacity: .5; cursor: not-allowed; }
-    .top-nav a { margin-right: 16px; color: #6B7280; text-decoration: none; padding-bottom: 6px; }
-    .top-nav a.aktif { color: var(--teal); border-bottom: 2px solid var(--teal); }
-    .top-nav span.mati { margin-right: 16px; color: #9CA3AF; cursor: not-allowed; }
-  </style>
+  <link href="{% static 'css/lahap.css' %}" rel="stylesheet">
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
 {% with url_name=request.resolver_match.url_name view_name=request.resolver_match.view_name %}
-<header class="app-header d-flex justify-content-between align-items-center px-3">
-  <a class="brand" href="{% url 'akun:beranda' %}">Katering tagihan</a>
+{% block header %}
+<header class="app-header">
+  <a class="wordmark" href="{% url 'akun:beranda' %}">lahap<span class="titik"><span class="visually-hidden">.</span></span>in</a>
   {% if user.is_authenticated %}
-  <div class="d-flex align-items-center gap-3">
-    <span class="text-secondary small">{{ user.username }} ({{ user.role }})</span>
+  <div class="app-user">
+    <span class="app-user-nama">{{ user.username }}</span>
+    <span class="chip-peran">{{ user.role }}</span>
     <form method="post" action="{% url 'akun:keluar' %}" class="m-0">
       {% csrf_token %}
       <button type="submit" class="btn btn-outline-secondary btn-sm">Keluar</button>
@@ -38,12 +26,12 @@
   </div>
   {% endif %}
 </header>
+{% endblock %}
 
-<div class="d-flex">
+<div class="app-shell">
   {% if user.is_authenticated and user.role == "Admin" %}
-  <nav class="sidebar">
+  <nav class="sidebar" aria-label="Menu utama">
     <a class="side-link {% if view_name == 'laporan:dashboard' %}aktif{% endif %}" href="{% url 'laporan:dashboard' %}">Dashboard</a>
-    {# Ganti span di bawah menjadi <a> bila halamannya sudah dibuat #}
     <a class="side-link {% if request.resolver_match.app_name == 'pelanggan' %}aktif{% endif %}" href="{% url 'pelanggan:daftar' %}">Pelanggan</a>
     <a class="side-link {% if request.resolver_match.app_name == 'aset' %}aktif{% endif %}" href="{% url 'aset:daftar' %}">Aset tetap</a>
     <a class="side-link {% if request.resolver_match.app_name == 'paket' %}aktif{% endif %}" href="{% url 'paket:daftar' %}">Paket dan tarif</a>
@@ -52,9 +40,9 @@
   </nav>
   {% endif %}
 
-  <main class="flex-grow-1 p-4">
+  <main class="app-main">
     {% if user.is_authenticated and user.role == "Customer" %}
-    <nav class="top-nav mb-4">
+    <nav class="top-nav mb-4" aria-label="Menu utama">
       <a class="{% if view_name == 'tagihan:saya' %}aktif{% endif %}" href="{% url 'tagihan:saya' %}">Tagihan saya</a>
       <a class="{% if view_name == 'paket:saya' %}aktif{% endif %}" href="{% url 'paket:saya' %}">Paket dan tarif</a>
       <a class="{% if view_name == 'pelanggan:data_diri' %}aktif{% endif %}" href="{% url 'pelanggan:data_diri' %}">Data diri</a>

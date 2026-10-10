@@ -1,12 +1,23 @@
 {% extends "base.html" %}
-{% block judul %}Masuk{% endblock %}
+{% block judul %}Masuk - lahap.in{% endblock %}
+{% block body_class %}halaman-masuk{% endblock %}
+{% block header %}{% endblock %}
 {% block isi %}
-<div class="mx-auto" style="max-width: 380px;">
-  <div class="card">
-    <div class="card-body">
-      <h1 class="h5 text-teal mb-3">Masuk untuk melanjutkan</h1>
+<div class="masuk">
+  <section class="masuk-merek" aria-label="lahap.in">
+    <a class="wordmark" href="{% url 'akun:beranda' %}">lahap<span class="titik"><span class="visually-hidden">.</span></span>in</a>
+    <div>
+      <p class="masuk-tagline"><span>Makan lahap,</span><span>administrasi lengkap.</span></p>
+      <p class="masuk-catatan">Tagihan katering yang rapi, dari terbit sampai lunas.</p>
+    </div>
+  </section>
+
+  <section class="masuk-sisi">
+    <div class="masuk-kartu">
+      <h1>Selamat datang kembali</h1>
+      <p class="masuk-sub">Masuk dengan akun Anda untuk melanjutkan.</p>
       {% if form.non_field_errors %}
-      <div class="alert alert-danger py-2">{{ form.non_field_errors.0 }}</div>
+      <div class="alert alert-danger" role="alert">{{ form.non_field_errors.0 }}</div>
       {% endif %}
       <form method="post">
         {% csrf_token %}
@@ -14,7 +25,7 @@
           <label class="form-label" for="{{ form.username.id_for_label }}">Username</label>
           {{ form.username }}
         </div>
-        <div class="mb-3">
+        <div class="mb-4">
           <label class="form-label" for="{{ form.password.id_for_label }}">Password</label>
           {{ form.password }}
         </div>
@@ -22,6 +33,6 @@
         <button type="submit" class="btn btn-teal w-100">Masuk</button>
       </form>
     </div>
-  </div>
+  </section>
 </div>
 {% endblock %}

@@ -1,0 +1,171 @@
+/* lahap.in - gaya aplikasi. Dimuat setelah Bootstrap 5.3.3 (CDN). */
+
+/* ---------- 1. Token ---------- */
+:root {
+  --lh-latar: #FAF6EF;
+  --lh-permukaan: #FFFFFF;
+  --lh-garis: #E7DFD2;
+  --lh-teks: #1F2A28;
+  --lh-teks-redup: #5B6764;
+  --lh-teal: #0F766E;
+  --lh-teal-gelap: #0B5D57;
+  --lh-teal-lembut: rgba(15, 118, 110, .09);
+  --lh-kunyit: #E9A23B;            /* hanya untuk momen merek */
+
+  --lh-lunas-bg: #E3F1E8;    --lh-lunas-fg: #1E6B3A;
+  --lh-tunggak-bg: #F6E1DA;  --lh-tunggak-fg: #9A3B22;
+  --lh-amber-bg: #FBEBCB;    --lh-amber-fg: #7A4F00;
+  --lh-netral-bg: #EFEAE0;   --lh-netral-fg: #4A5552;
+
+  --lh-radius: 10px;
+  --lh-tinggi-header: 60px;
+
+  --bs-body-font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bs-body-bg: var(--lh-latar);
+  --bs-body-color: var(--lh-teks);
+  --bs-secondary-color: var(--lh-teks-redup);
+  --bs-border-color: var(--lh-garis);
+  --bs-link-color-rgb: 15, 118, 110;
+  --bs-link-hover-color-rgb: 11, 93, 87;
+}
+
+body { font-size: .9375rem; -webkit-font-smoothing: antialiased; }
+.text-secondary { color: var(--lh-teks-redup) !important; }
+.text-teal { color: var(--lh-teal) !important; }
+:focus-visible { outline: 2px solid var(--lh-teal); outline-offset: 2px; }
+
+/* Angka Rupiah: lebar angka sama, rata kanan */
+.angka, td.text-end, th.text-end { font-variant-numeric: tabular-nums; }
+.angka { text-align: right; white-space: nowrap; }
+table { font-variant-numeric: tabular-nums; }
+
+/* ---------- 2. Wordmark ---------- */
+.wordmark {
+  font-weight: 800; letter-spacing: -.02em; color: var(--lh-teal);
+  text-decoration: none; font-size: 1.35rem; line-height: 1;
+}
+.wordmark:hover { color: var(--lh-teal-gelap); }
+.titik {
+  display: inline-block; width: .26em; height: .26em; border-radius: 50%;
+  background: var(--lh-kunyit); margin: 0 .05em;
+}
+
+/* ---------- 3. Kerangka ---------- */
+.app-header {
+  height: var(--lh-tinggi-header); background: var(--lh-permukaan);
+  border-bottom: 1px solid var(--lh-garis);
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 1.25rem;
+}
+.app-user { display: flex; align-items: center; gap: .75rem; }
+.app-user-nama { font-weight: 600; font-size: .875rem; }
+.chip-peran {
+  font-size: .75rem; font-weight: 600; padding: .15rem .55rem; border-radius: 999px;
+  background: var(--lh-netral-bg); color: var(--lh-netral-fg);
+}
+.app-shell { display: flex; align-items: stretch; }
+.app-main { flex: 1 1 auto; min-width: 0; padding: 1.75rem clamp(1rem, 3vw, 2.25rem); }
+
+.sidebar {
+  width: 232px; flex: none; background: var(--lh-permukaan);
+  border-right: 1px solid var(--lh-garis); padding: 1rem .75rem;
+  min-height: calc(100vh - var(--lh-tinggi-header));
+}
+.side-link {
+  display: block; padding: .55rem .85rem; margin-bottom: .2rem; border-radius: 8px;
+  color: var(--lh-teks); font-weight: 500; text-decoration: none;
+}
+.side-link:hover { background: var(--lh-latar); }
+.side-link.aktif { background: var(--lh-teal-lembut); color: var(--lh-teal); font-weight: 700; }
+.side-link.mati { opacity: .5; cursor: not-allowed; }
+
+.top-nav { display: flex; flex-wrap: wrap; gap: 1.5rem; border-bottom: 1px solid var(--lh-garis); }
+.top-nav a {
+  color: var(--lh-teks-redup); font-weight: 500; text-decoration: none;
+  padding: 0 0 .65rem; margin-bottom: -1px; border-bottom: 2px solid transparent;
+}
+.top-nav a:hover { color: var(--lh-teal); }
+.top-nav a.aktif { color: var(--lh-teal); font-weight: 700; border-bottom-color: var(--lh-teal); }
+
+@media (max-width: 767.98px) {
+  .app-shell { flex-direction: column; }
+  .sidebar {
+    width: 100%; min-height: 0; border-right: 0; border-bottom: 1px solid var(--lh-garis);
+    display: flex; gap: .25rem; overflow-x: auto; padding: .5rem .75rem;
+  }
+  .side-link { white-space: nowrap; margin-bottom: 0; }
+  .app-user-nama { display: none; }
+}
+
+/* ---------- 4. Komponen bersama ---------- */
+.btn { font-weight: 600; border-radius: 8px; }
+.btn-teal { background: var(--lh-teal); border-color: var(--lh-teal); color: #fff; }
+.btn-teal:hover, .btn-teal:focus-visible { background: var(--lh-teal-gelap); border-color: var(--lh-teal-gelap); color: #fff; }
+.btn-outline-secondary { --bs-btn-color: var(--lh-teks); --bs-btn-border-color: var(--lh-garis);
+  --bs-btn-hover-bg: var(--lh-latar); --bs-btn-hover-color: var(--lh-teks); --bs-btn-hover-border-color: #D3C8B6; }
+.btn-danger { --bs-btn-bg: #B4452A; --bs-btn-border-color: #B4452A;
+  --bs-btn-hover-bg: #9A3B22; --bs-btn-hover-border-color: #9A3B22; }
+
+.card { background: var(--lh-permukaan); border: 1px solid var(--lh-garis); border-radius: var(--lh-radius); box-shadow: none; }
+
+.form-label { font-weight: 600; font-size: .875rem; margin-bottom: .35rem; }
+.form-control, .form-select { border-color: #D3C8B6; border-radius: 8px; padding: .55rem .75rem; }
+.form-control:focus, .form-select:focus { border-color: var(--lh-teal); box-shadow: 0 0 0 .2rem rgba(15, 118, 110, .18); }
+
+.table { --bs-table-bg: transparent; --bs-table-hover-bg: #FBF8F2; border-color: var(--lh-garis); }
+.table > thead > tr > th, .table-light { --bs-table-bg: #F4EEE3; --bs-table-color: var(--lh-teks-redup);
+  font-size: .8125rem; font-weight: 600; border-bottom-color: var(--lh-garis); }
+.table > :not(caption) > * > * { padding: .7rem .85rem; }
+.table-responsive.border, .border.bg-white { border-color: var(--lh-garis) !important; border-radius: var(--lh-radius); background: var(--lh-permukaan) !important; }
+
+/* Badge status: lembut. Pemetaan dari kelas Bootstrap lama sampai include dibuat */
+.badge { font-weight: 600; font-size: .78rem; padding: .3rem .65rem; border-radius: 999px; }
+.badge.text-bg-success   { background: var(--lh-lunas-bg) !important;   color: var(--lh-lunas-fg) !important; }
+.badge.text-bg-danger    { background: var(--lh-tunggak-bg) !important; color: var(--lh-tunggak-fg) !important; }
+.badge.text-bg-warning   { background: var(--lh-amber-bg) !important;   color: var(--lh-amber-fg) !important; }
+.badge.text-bg-secondary { background: var(--lh-netral-bg) !important;  color: var(--lh-netral-fg) !important; }
+
+/* Pesan flash */
+.alert { border: 1px solid transparent; border-left-width: 4px; border-radius: 8px; padding: .7rem 1rem; }
+.alert-success { background: var(--lh-lunas-bg);   border-color: var(--lh-lunas-fg);   color: #17512C; }
+.alert-danger  { background: var(--lh-tunggak-bg); border-color: var(--lh-tunggak-fg); color: #7D2E19; }
+.alert-warning { background: var(--lh-amber-bg);   border-color: #B07A12;              color: var(--lh-amber-fg); }
+.alert-info    { background: #E1EFEE;              border-color: var(--lh-teal);       color: #0B4D48; }
+
+/* ---------- 5. Halaman masuk ---------- */
+.halaman-masuk .app-main { padding: 0; }
+.masuk { min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+
+.masuk-merek {
+  position: relative; overflow: hidden; background: var(--lh-teal); color: #fff;
+  padding: clamp(1.75rem, 5vw, 4.5rem); display: flex; flex-direction: column; justify-content: space-between; gap: 3rem;
+}
+.masuk-merek::after {            /* piring: titik wordmark yang diperbesar */
+  content: ""; position: absolute; width: 26rem; height: 26rem; border-radius: 50%;
+  background: var(--lh-kunyit); top: -9rem; right: -9rem;
+}
+.masuk-merek .wordmark { color: #fff; font-size: 1.6rem; position: relative; z-index: 1; }
+.masuk-merek .wordmark:hover { color: #fff; }
+.masuk-tagline {
+  position: relative; z-index: 1; margin: 0; font-weight: 800; letter-spacing: -.025em;
+  font-size: clamp(2.1rem, 4.4vw, 3.6rem); line-height: 1.08;
+}
+.masuk-tagline span { display: block; }
+.masuk-catatan { position: relative; z-index: 1; margin: 1.25rem 0 0; max-width: 34ch; color: rgba(255, 255, 255, .86); }
+
+.masuk-sisi { display: grid; place-items: center; padding: 2rem 1.25rem; background: var(--lh-latar); }
+.masuk-kartu { width: 100%; max-width: 380px; }
+.masuk-kartu h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em; margin: 0 0 .35rem; }
+.masuk-kartu .masuk-sub { color: var(--lh-teks-redup); margin: 0 0 1.5rem; }
+.masuk-kartu .btn-teal { padding: .65rem 1rem; }
+
+@media (max-width: 767.98px) {
+  .masuk { grid-template-columns: 1fr; min-height: 0; }
+  .masuk-merek { gap: 1.75rem; padding: 1.5rem 1.25rem 2rem; }
+  .masuk-merek::after { width: 11rem; height: 11rem; top: -4.5rem; right: -4rem; }
+  .masuk-tagline { font-size: 1.9rem; }
+  .masuk-catatan { display: none; }
+  .masuk-sisi { place-items: start center; padding-top: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
