@@ -169,3 +169,28 @@ table { font-variant-numeric: tabular-nums; }
 }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* ---------- 6. Komponen halaman data (patokan: tagihan/daftar) ---------- */
+.badge-lunas  { background: var(--lh-lunas-bg);   color: var(--lh-lunas-fg); }
+.badge-tunggak{ background: var(--lh-tunggak-bg); color: var(--lh-tunggak-fg); }
+.badge-amber  { background: var(--lh-amber-bg);   color: var(--lh-amber-fg); }
+.badge-netral { background: var(--lh-netral-bg);  color: var(--lh-netral-fg); }
+
+.halaman-judul { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: .75rem 1rem; margin-bottom: 1.25rem; }
+.halaman-judul h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; margin: 0; }
+.halaman-judul .catatan { margin: .25rem 0 0; color: var(--lh-teks-redup); max-width: 60ch; }
+
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: 1rem; }
+.toolbar .form-select { width: auto; min-width: 11rem; }
+
+.tabel-data td.nama { font-weight: 600; }
+.tabel-data td.redup, .tabel-data .redup { color: var(--lh-teks-redup); }
+.tabel-data th.angka, .tabel-data td.angka { text-align: right; }
+.tabel-data td.aksi a { font-weight: 600; text-decoration: none; }
+.tabel-data td.aksi a:hover { text-decoration: underline; }
+
+.paging { display: flex; justify-content: flex-end; align-items: center; gap: 1rem; margin-top: 1rem; font-size: .875rem; color: var(--lh-teks-redup); }
+.paging a { font-weight: 600; text-decoration: none; }
+
+.keadaan-kosong { text-align: center; padding: 3rem 1rem; }
+.keadaan-kosong h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: .25rem; }

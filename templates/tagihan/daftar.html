@@ -2,59 +2,48 @@
 {% load format_tagihan %}
 {% block judul %}Tagihan{% endblock %}
 {% block isi %}
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h1 class="h4 m-0">Tagihan</h1>
+<div class="halaman-judul">
+  <div>
+    <h1>Tagihan</h1>
+    <p class="catatan">Tagihan dibuat otomatis setiap tanggal 1. Gunakan tombol di kanan atas untuk pelanggan baru atau yang terlewat.</p>
+  </div>
   <a class="btn btn-teal" href="{% url 'tagihan:buat' %}">Buat tagihan bulan ini</a>
 </div>
 
-<div class="alert alert-info py-2">
-  Tagihan dibuat otomatis setiap tanggal 1. Gunakan tombol di kanan atas untuk pelanggan baru atau yang terlewat.
-</div>
-
-<form method="get" class="row g-2 mb-3">
-  <div class="col-auto">
-    <select name="periode" class="form-select">
-      <option value="">Periode: semua</option>
-      {% for p in periode_pilihan %}
-      <option value="{{ p }}" {% if p == periode_dipilih %}selected{% endif %}>{{ p|label_periode }}</option>
-      {% endfor %}
-    </select>
-  </div>
-  <div class="col-auto">
-    <select name="status" class="form-select">
-      <option value="">Status: semua</option>
-      {% for nilai, nama in status_pilihan %}
-      <option value="{{ nilai }}" {% if nilai == status_dipilih %}selected{% endif %}>{{ nama }}</option>
-      {% endfor %}
-    </select>
-  </div>
-  <div class="col-auto d-flex gap-2">
-    <button type="submit" class="btn btn-outline-secondary">Terapkan</button>
-    <a class="btn btn-link" href="{% url 'tagihan:daftar' %}">Reset</a>
-  </div>
+<form method="get" class="toolbar">
+  <select name="periode" class="form-select" aria-label="Periode">
+    <option value="">Periode: semua</option>
+    {% for p in periode_pilihan %}
+    <option value="{{ p }}" {% if p == periode_dipilih %}selected{% endif %}>{{ p|label_periode }}</option>
+    {% endfor %}
+  </select>
+  <select name="status" class="form-select" aria-label="Status">
+    <option value="">Status: semua</option>
+    {% for nilai, nama in status_pilihan %}
+    <option value="{{ nilai }}" {% if nilai == status_dipilih %}selected{% endif %}>{{ nama }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit" class="btn btn-outline-secondary">Terapkan</button>
+  <a class="btn btn-link" href="{% url 'tagihan:daftar' %}">Reset</a>
 </form>
 
 {% if daftar_tagihan %}
 <div class="table-responsive bg-white border rounded">
-  <table class="table table-hover align-middle m-0">
+  <table class="table table-hover tabel-data align-middle m-0">
     <thead class="table-light">
-      <tr><th>Pelanggan</th><th>Periode</th><th>Jumlah</th><th>Jatuh tempo</th><th>Status</th><th>Aksi</th></tr>
+      <tr><th>Pelanggan</th><th>Periode</th><th class="angka">Jumlah</th><th>Jatuh tempo</th><th>Status</th><th>Aksi</th></tr>
     </thead>
     <tbody>
       {% for t in daftar_tagihan %}
       <tr>
-        <td>{{ t.langganan.pelanggan.nama }}</td>
+        <td class="nama">{{ t.langganan.pelanggan.nama }}</td>
         <td>{{ t.periode|label_periode }}</td>
-        <td>Rp {{ t.jumlah|floatformat:"0g" }}</td>
-        <td>{{ t.jatuh_tempo|date:"d M Y" }}</td>
-        <td>
-          {% if t.status == "Lunas" %}<span class="badge text-bg-success">Lunas</span>
-          {% elif t.status == "Menunggak" %}<span class="badge text-bg-danger">Menunggak</span>
-          {% else %}<span class="badge text-bg-warning">{{ t.status }}</span>{% endif %}
-        </td>
-        <td class="text-nowrap">
+        <td class="angka">Rp {{ t.jumlah|floatformat:"0g" }}</td>
+        <td class="redup">{{ t.jatuh_tempo|date:"d M Y" }}</td>
+        <td>{% include "komponen/badge_status.html" with status=t.status %}</td>
+        <td class="aksi text-nowrap">
           {% if t.status == "Lunas" %}
-          <span class="text-secondary small">Lunas {{ t.tgl_lunas|date:"d M Y" }}</span>
+          <span class="redup small">Lunas {{ t.tgl_lunas|date:"d M Y" }}</span>
           {% else %}
           <a href="{% url 'tagihan:lunas' t.pk %}">Tandai lunas</a>
           {% endif %}
@@ -66,18 +55,16 @@
 </div>
 
 {% if is_paginated %}
-<nav class="d-flex justify-content-end gap-3 small mt-3">
+<nav class="paging" aria-label="Halaman">
   {% if page_obj.has_previous %}<a href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ page_obj.previous_page_number }}">Sebelumnya</a>{% endif %}
   <span>Halaman {{ page_obj.number }} dari {{ page_obj.paginator.num_pages }}</span>
   {% if page_obj.has_next %}<a href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ page_obj.next_page_number }}">Berikutnya</a>{% endif %}
 </nav>
 {% endif %}
 {% else %}
-<div class="card text-center py-5">
-  <div class="card-body">
-    <h2 class="h5">Belum ada tagihan</h2>
-    <p class="text-secondary">Tagihan akan muncul di sini setelah dibuat.</p>
-  </div>
+<div class="card keadaan-kosong">
+  <h2>Belum ada tagihan</h2>
+  <p class="text-secondary m-0">Tagihan akan muncul di sini setelah dibuat.</p>
 </div>
 {% endif %}
 {% endblock %}
