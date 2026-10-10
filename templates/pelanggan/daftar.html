@@ -59,7 +59,7 @@
         <td class="text-nowrap">
           <a href="{% url 'pelanggan:ubah' p.pk %}">Ubah</a>
           {% if p.status == "Aktif" %}
-          | <a class="text-danger" href="{% url 'pelanggan:hapus' p.pk %}">Hapus</a>
+          | <a class="text-danger" href="{% url 'pelanggan:hapus' p.pk %}" data-dialog>Hapus</a>
           {% else %}
           | <form method="post" action="{% url 'pelanggan:aktifkan' p.pk %}" class="d-inline">
               {% csrf_token %}

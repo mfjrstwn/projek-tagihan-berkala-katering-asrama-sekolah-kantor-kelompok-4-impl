@@ -1,29 +1,31 @@
 {% extends "base.html" %}
 {% block judul %}{% if punya_tagihan %}Nonaktifkan pelanggan{% else %}Hapus pelanggan{% endif %}{% endblock %}
 {% block isi %}
-<div class="card" style="max-width: 560px;">
-  <div class="card-body">
-    {% if punya_tagihan %}
-    <h1 class="h5">Nonaktifkan pelanggan?</h1>
-    <p class="text-secondary">
-      {{ pelanggan.nama }} sudah punya riwayat tagihan sehingga tidak bisa dihapus.
-      Pelanggan akan dinonaktifkan dan tidak ditagih lagi. Riwayat tagihan tetap tersimpan.
-    </p>
-    {% else %}
-    <h1 class="h5">Hapus pelanggan?</h1>
-    <p class="text-secondary">
-      Data {{ pelanggan.nama }} dan langganannya akan dihapus. Tindakan ini tidak bisa dibatalkan.
-    </p>
-    {% endif %}
-    <form method="post" class="d-flex justify-content-end gap-2">
-      {% csrf_token %}
-      <a class="btn btn-outline-secondary" href="{% url 'pelanggan:daftar' %}">Batal</a>
+<div class="dialog-latar">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-judul">
+    <div class="dialog-isi" data-dialog-isi>
       {% if punya_tagihan %}
-      <button type="submit" class="btn btn-teal">Nonaktifkan</button>
+      <h1 id="dialog-judul">Nonaktifkan pelanggan?</h1>
+      <p>
+        {{ pelanggan.nama }} sudah punya riwayat tagihan sehingga tidak bisa dihapus.
+        Pelanggan akan dinonaktifkan dan tidak ditagih lagi. Riwayat tagihan tetap tersimpan.
+      </p>
       {% else %}
-      <button type="submit" class="btn btn-danger">Hapus</button>
+      <h1 id="dialog-judul">Hapus pelanggan?</h1>
+      <p>
+        Data {{ pelanggan.nama }} dan langganannya akan dihapus. Tindakan ini tidak bisa dibatalkan.
+      </p>
       {% endif %}
-    </form>
+      <form method="post" action="{{ request.get_full_path }}" class="dialog-aksi">
+        {% csrf_token %}
+        <a class="btn btn-outline-secondary" href="{% url 'pelanggan:daftar' %}" data-dialog-tutup>Batal</a>
+        {% if punya_tagihan %}
+        <button type="submit" class="btn btn-teal">Nonaktifkan</button>
+        {% else %}
+        <button type="submit" class="btn btn-danger">Hapus</button>
+        {% endif %}
+      </form>
+    </div>
   </div>
 </div>
 {% endblock %}

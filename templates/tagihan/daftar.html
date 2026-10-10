@@ -7,7 +7,7 @@
     <h1>Tagihan</h1>
     <p class="catatan">Tagihan dibuat otomatis setiap tanggal 1. Gunakan tombol di kanan atas untuk pelanggan baru atau yang terlewat.</p>
   </div>
-  <a class="btn btn-teal" href="{% url 'tagihan:buat' %}">Buat tagihan bulan ini</a>
+  <a class="btn btn-teal" href="{% url 'tagihan:buat' %}" data-dialog>Buat tagihan bulan ini</a>
 </div>
 
 <form method="get" class="toolbar">
@@ -45,7 +45,7 @@
           {% if t.status == "Lunas" %}
           <span class="redup small">Lunas {{ t.tgl_lunas|date:"d M Y" }}</span>
           {% else %}
-          <a href="{% url 'tagihan:lunas' t.pk %}">Tandai lunas</a>
+          <a href="{% url 'tagihan:lunas' t.pk %}" data-dialog>Tandai lunas</a>
           {% endif %}
         </td>
       </tr>

@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="{% static 'css/lahap.css' %}" rel="stylesheet">
+  <script src="{% static 'js/lahap.js' %}" defer></script>
 </head>
 <body class="{% block body_class %}{% endblock %}">
 {% with url_name=request.resolver_match.url_name view_name=request.resolver_match.view_name %}

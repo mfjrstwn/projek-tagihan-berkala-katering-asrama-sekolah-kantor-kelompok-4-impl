@@ -194,3 +194,21 @@ table { font-variant-numeric: tabular-nums; }
 
 .keadaan-kosong { text-align: center; padding: 3rem 1rem; }
 .keadaan-kosong h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: .25rem; }
+
+/* ---------- 7. Dialog konfirmasi (modal) ---------- */
+.dialog-latar {                   /* mode halaman penuh: meniru modal */
+  position: fixed; inset: 0; z-index: 1055; display: grid; place-items: center; padding: 1rem;
+  background: rgba(31, 42, 40, .45);
+}
+.dialog {
+  width: 100%; max-width: 420px; padding: 0; background: var(--lh-permukaan); color: var(--lh-teks);
+  border: 1px solid var(--lh-garis); border-radius: 12px;
+}
+dialog.dialog { margin: auto; }
+dialog.dialog::backdrop { background: rgba(31, 42, 40, .45); }
+.dialog-isi { padding: 1.5rem; }
+.dialog-isi h1 { font-size: 1.15rem; font-weight: 800; letter-spacing: -.01em; margin: 0 0 .5rem; }
+.dialog-isi p { color: var(--lh-teks-redup); margin: 0 0 1.25rem; }
+.dialog-isi .form-label { margin-top: .25rem; }
+.dialog-isi .galat { color: var(--lh-tunggak-fg); font-size: .8125rem; margin-top: .35rem; }
+.dialog-aksi { display: flex; justify-content: flex-end; gap: .5rem; margin-top: 1.25rem; }
