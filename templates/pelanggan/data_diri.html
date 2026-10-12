@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block judul %}Data diri{% endblock %}
 {% block isi %}
-<div class="halaman-judul">
+<div class="halaman-judul tengah">
   <div>
     <h1>Data diri</h1>
     <p class="catatan">Data ini hanya bisa dilihat. Hubungi admin bila ada yang perlu diperbarui.</p>
@@ -11,16 +11,37 @@
 {% if not pelanggan %}
 <div class="alert alert-info">Akun Anda belum terhubung dengan data pelanggan. Hubungi admin.</div>
 {% else %}
-<div class="card kartu-data">
-  <dl class="daftar-data">
-    <dt>Nama</dt><dd>{{ pelanggan.nama }}</dd>
-    <dt>Segmen</dt><dd>{{ pelanggan.segmen }}</dd>
-    <dt>Tipe</dt><dd>{{ pelanggan.tipe }}</dd>
-    <dt>Paket</dt>
-    <dd>{% for l in pelanggan.langganan.all %}{{ l.paket.nama_paket }}{% if l.jumlah_porsi %} ({{ l.jumlah_porsi }} porsi){% endif %}{% if not forloop.last %}, {% endif %}{% empty %}-{% endfor %}</dd>
-    <dt>Status</dt><dd>{% include "komponen/badge_status.html" with status=pelanggan.status %}</dd>
-    <dt>Kontak</dt><dd>{{ pelanggan.kontak|default:"-" }}</dd>
-    <dt>Alamat</dt><dd>{{ pelanggan.alamat|default:"-" }}</dd>
+<div class="card profil">
+  <div class="profil-kepala">
+    <span class="avatar" aria-hidden="true">
+      {% if pelanggan.tipe == "Instansi" %}
+      <svg viewBox="0 0 48 48" width="72" height="72" focusable="false"><path fill-rule="evenodd" d="M14 10h20v28H14z M18 15h4v4h-4z M26 15h4v4h-4z M18 22h4v4h-4z M26 22h4v4h-4z M18 29h4v4h-4z M26 29h4v4h-4z M10 38h28v3H10z"/></svg>
+      {% else %}
+      <svg viewBox="0 0 48 48" width="72" height="72" focusable="false"><circle cx="24" cy="18" r="8"/><path d="M7 42c0-9.5 7.2-15 17-15s17 5.5 17 15c0 1.1-.9 2-2 2H9c-1.1 0-2-.9-2-2z"/></svg>
+      {% endif %}
+    </span>
+    <h2 class="profil-nama">{{ pelanggan.nama }}</h2>
+  </div>
+
+  <dl class="profil-ringkas">
+    <div><dt>Segmen</dt><dd>{{ pelanggan.segmen }}</dd></div>
+    <div><dt>Tipe</dt><dd>{{ pelanggan.tipe }}</dd></div>
+    <div><dt>Status</dt><dd>{% include "komponen/badge_status.html" with status=pelanggan.status %}</dd></div>
+  </dl>
+
+  <dl class="profil-rincian">
+    <div>
+      <dt>Paket</dt>
+      <dd>{% for l in pelanggan.langganan.all %}{{ l.paket.nama_paket }}{% if l.jumlah_porsi %} ({{ l.jumlah_porsi }} porsi){% endif %}{% if not forloop.last %}, {% endif %}{% empty %}-{% endfor %}</dd>
+    </div>
+    <div>
+      <dt>Kontak</dt>
+      <dd>{{ pelanggan.kontak|default:"-" }}</dd>
+    </div>
+    <div class="penuh">
+      <dt>Alamat</dt>
+      <dd>{{ pelanggan.alamat|default:"-" }}</dd>
+    </div>
   </dl>
 </div>
 {% endif %}

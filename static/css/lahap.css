@@ -265,18 +265,34 @@ dialog.dialog::backdrop { background: rgba(31, 42, 40, .45); }
 .kartu-paket .satuan { color: var(--lh-teks-redup); font-size: .875rem; }
 .badge-paket { background: var(--lh-teal-lembut); color: var(--lh-teal); }
 
-.kartu-data { max-width: 640px; padding: .5rem 1.5rem; }
-.daftar-data { display: grid; grid-template-columns: minmax(6rem, 10rem) 1fr; margin: 0; }
-.daftar-data dt, .daftar-data dd { margin: 0; padding: .85rem 0; border-top: 1px solid var(--lh-garis); }
-.daftar-data dt { color: var(--lh-teks-redup); font-size: .875rem; font-weight: 600; }
-.daftar-data dd { font-weight: 500; overflow-wrap: anywhere; }
-.daftar-data dt:first-of-type, .daftar-data dt:first-of-type + dd { border-top: 0; }
+/* Kartu profil (data diri) */
+.profil { max-width: 44rem; margin: 0 auto; overflow: hidden; }
+.profil-kepala { text-align: center; padding: 2rem 1.5rem 1.5rem; }
+.avatar {
+  display: block; overflow: hidden; width: 4.5rem; height: 4.5rem; margin: 0 auto .9rem; border-radius: 50%;
+  background: var(--lh-teal-lembut); color: var(--lh-teal);
+  box-shadow: 0 0 0 4px var(--lh-permukaan), 0 0 0 5px rgba(15, 118, 110, .35);
+}
+.avatar svg { display: block; width: 100%; height: 100%; fill: currentColor; }
+.profil-nama { font-size: 1.4rem; font-weight: 800; letter-spacing: -.02em; margin: 0; overflow-wrap: anywhere; }
+
+.profil dl { margin: 0; }
+.profil dt { color: var(--lh-teks-redup); font-size: .8125rem; font-weight: 600; margin-bottom: .3rem; }
+.profil dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+
+.profil-ringkas { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--lh-latar);
+  border-top: 1px solid var(--lh-garis); border-bottom: 1px solid var(--lh-garis); }
+.profil-ringkas > div { padding: 1rem .75rem; text-align: center; }
+.profil-ringkas > div + div { border-left: 1px solid var(--lh-garis); }
+
+.profil-rincian { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 2rem; padding: 1.5rem 2rem 1.75rem; }
+.profil-rincian dd { font-weight: 500; }
+.profil-rincian .penuh { grid-column: 1 / -1; }
 
 @media (max-width: 575.98px) {
-  .daftar-data { grid-template-columns: 1fr; }
-  .daftar-data dt { padding-bottom: 0; }
-  .daftar-data dd { border-top: 0; padding-top: .15rem; }
-  .daftar-data dt:first-of-type { border-top: 0; }
+  .profil-ringkas { grid-template-columns: 1fr; }
+  .profil-ringkas > div + div { border-left: 0; border-top: 1px solid var(--lh-garis); }
+  .profil-rincian { grid-template-columns: 1fr; padding: 1.25rem; }
 }
 
 .halaman-judul.tengah { justify-content: center; text-align: center; }
