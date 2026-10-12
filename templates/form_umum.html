@@ -1,26 +1,25 @@
 {% extends "base.html" %}
 {% block judul %}{{ judul }}{% endblock %}
 {% block isi %}
-<h1 class="h4 mb-3">{{ judul }}</h1>
+<div class="halaman-judul tengah">
+  <div>
+    <h1>{{ judul }}</h1>
+  </div>
+</div>
 
-<form method="post" class="bg-white border rounded p-3" style="max-width: 640px;" novalidate>
+<form method="post" class="card kartu-form" novalidate>
   {% csrf_token %}
   {% if form.non_field_errors %}
-  <div class="alert alert-danger py-2">{{ form.non_field_errors.0 }}</div>
+  <div class="alert alert-danger">{{ form.non_field_errors.0 }}</div>
   {% endif %}
 
-  {% for kolom in form %}
-  <div class="mb-3">
-    <label class="form-label" for="{{ kolom.id_for_label }}">{{ kolom.label }}</label>
-    {{ kolom }}
-    {% if kolom.help_text %}<div class="form-text">{{ kolom.help_text }}</div>{% endif %}
-    {% for galat in kolom.errors %}
-    <div class="text-danger small">{{ galat }}</div>
+  <div class="form-grid">
+    {% for kolom in form %}
+    {% include "komponen/kolom_form.html" with kolom=kolom %}
     {% endfor %}
   </div>
-  {% endfor %}
 
-  <div class="d-flex justify-content-end gap-2">
+  <div class="form-aksi">
     <a class="btn btn-outline-secondary" href="{{ url_batal }}">Batal</a>
     <button type="submit" class="btn btn-teal">Simpan</button>
   </div>

@@ -1,71 +1,58 @@
 {% extends "base.html" %}
 {% block judul %}Pelanggan{% endblock %}
 {% block isi %}
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h1 class="h4 m-0">Pelanggan</h1>
+<div class="halaman-judul">
+  <div>
+    <h1>Pelanggan</h1>
+    <p class="catatan">Cari, ubah, atau nonaktifkan pelanggan katering. Pelanggan yang sudah punya tagihan tidak dihapus, tetapi dinonaktifkan.</p>
+  </div>
   <a class="btn btn-teal" href="{% url 'pelanggan:tambah' %}">+ Tambah pelanggan</a>
 </div>
 
-<form method="get" class="row g-2 mb-3">
-  <div class="col-md-4">
-    <input type="search" name="q" value="{{ kata }}" class="form-control" placeholder="Cari nama pelanggan">
-  </div>
-  <div class="col-auto">
-    <select name="segmen" class="form-select">
-      <option value="">Segmen: semua</option>
-      {% for nilai, nama in segmen_pilihan %}
-      <option value="{{ nilai }}" {% if nilai == segmen_dipilih %}selected{% endif %}>{{ nama }}</option>
-      {% endfor %}
-    </select>
-  </div>
-  <div class="col-auto">
-    <select name="status" class="form-select">
-      <option value="">Status: semua</option>
-      {% for nilai, nama in status_pilihan %}
-      <option value="{{ nilai }}" {% if nilai == status_dipilih %}selected{% endif %}>{{ nama }}</option>
-      {% endfor %}
-    </select>
-  </div>
-  <div class="col-auto d-flex gap-2">
-    <button type="submit" class="btn btn-outline-secondary">Terapkan</button>
-    <a class="btn btn-link" href="{% url 'pelanggan:daftar' %}">Reset</a>
-  </div>
+<form method="get" class="toolbar">
+  <input type="search" name="q" value="{{ kata }}" class="form-control cari" placeholder="Cari nama pelanggan" aria-label="Cari nama pelanggan">
+  <select name="segmen" class="form-select" aria-label="Segmen">
+    <option value="">Segmen: semua</option>
+    {% for nilai, nama in segmen_pilihan %}
+    <option value="{{ nilai }}" {% if nilai == segmen_dipilih %}selected{% endif %}>{{ nama }}</option>
+    {% endfor %}
+  </select>
+  <select name="status" class="form-select" aria-label="Status">
+    <option value="">Status: semua</option>
+    {% for nilai, nama in status_pilihan %}
+    <option value="{{ nilai }}" {% if nilai == status_dipilih %}selected{% endif %}>{{ nama }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit" class="btn btn-outline-secondary">Terapkan</button>
+  <a class="btn btn-link" href="{% url 'pelanggan:daftar' %}">Reset</a>
 </form>
 
 {% if daftar_pelanggan %}
 <div class="table-responsive bg-white border rounded">
-  <table class="table table-hover align-middle m-0">
+  <table class="table table-hover tabel-data align-middle m-0">
     <thead class="table-light">
-      <tr>
-        <th>Nama</th><th>Segmen</th><th>Tipe</th><th>Paket</th><th>Status</th><th>Aksi</th>
-      </tr>
+      <tr><th>Nama</th><th>Segmen</th><th>Tipe</th><th>Paket</th><th>Status</th><th>Aksi</th></tr>
     </thead>
     <tbody>
       {% for p in daftar_pelanggan %}
-      <tr>
-        <td>{{ p.nama }}</td>
+      <tr{% if p.status != "Aktif" %} class="baris-nonaktif"{% endif %}>
+        <td class="nama">{{ p.nama }}</td>
         <td>{{ p.segmen }}</td>
         <td>{{ p.tipe }}</td>
-        <td>
-          {% for l in p.langganan.all %}{{ l.paket.nama_paket }}{% if l.jumlah_porsi %} ({{ l.jumlah_porsi }} porsi){% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}
-        </td>
-        <td>
-          {% if p.status == "Aktif" %}
-          <span class="badge text-bg-success">Aktif</span>
-          {% else %}
-          <span class="badge text-bg-secondary">Nonaktif</span>
-          {% endif %}
-        </td>
-        <td class="text-nowrap">
-          <a href="{% url 'pelanggan:ubah' p.pk %}">Ubah</a>
-          {% if p.status == "Aktif" %}
-          | <a class="text-danger" href="{% url 'pelanggan:hapus' p.pk %}" data-dialog>Hapus</a>
-          {% else %}
-          | <form method="post" action="{% url 'pelanggan:aktifkan' p.pk %}" class="d-inline">
+        <td class="redup">{% for l in p.langganan.all %}{{ l.paket.nama_paket }}{% if l.jumlah_porsi %} ({{ l.jumlah_porsi }} porsi){% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+        <td>{% include "komponen/badge_status.html" with status=p.status %}</td>
+        <td class="aksi text-nowrap">
+          <span class="aksi-baris">
+            <a href="{% url 'pelanggan:ubah' p.pk %}">Ubah</a>
+            {% if p.status == "Aktif" %}
+            <a class="tautan-bahaya" href="{% url 'pelanggan:hapus' p.pk %}" data-dialog>Hapus</a>
+            {% else %}
+            <form method="post" action="{% url 'pelanggan:aktifkan' p.pk %}">
               {% csrf_token %}
               <button type="submit" class="btn btn-link p-0 align-baseline">Aktifkan</button>
             </form>
-          {% endif %}
+            {% endif %}
+          </span>
         </td>
       </tr>
       {% endfor %}
@@ -73,29 +60,19 @@
   </table>
 </div>
 
-{% if is_paginated %}
-<nav class="d-flex justify-content-end gap-3 small mt-3">
-  {% if page_obj.has_previous %}<a href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ page_obj.previous_page_number }}">Sebelumnya</a>{% endif %}
-  <span>Halaman {{ page_obj.number }} dari {{ page_obj.paginator.num_pages }}</span>
-  {% if page_obj.has_next %}<a href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ page_obj.next_page_number }}">Berikutnya</a>{% endif %}
-</nav>
-{% endif %}
+{% include "komponen/paginasi.html" with satuan="pelanggan" %}
 
 {% elif ada_filter %}
-<div class="card text-center py-5">
-  <div class="card-body">
-    <h2 class="h5">Tidak ada hasil</h2>
-    <p class="text-secondary m-0">Coba kata kunci atau filter lain.</p>
-  </div>
+<div class="card keadaan-kosong">
+  <h2>Tidak ada hasil</h2>
+  <p class="text-secondary m-0">Coba kata kunci atau filter lain.</p>
 </div>
 
 {% else %}
-<div class="card text-center py-5">
-  <div class="card-body">
-    <h2 class="h5">Belum ada pelanggan</h2>
-    <p class="text-secondary">Tambahkan pelanggan pertama untuk mulai membuat tagihan.</p>
-    <a class="btn btn-teal" href="{% url 'pelanggan:tambah' %}">+ Tambah pelanggan</a>
-  </div>
+<div class="card keadaan-kosong">
+  <h2>Belum ada pelanggan</h2>
+  <p class="text-secondary mb-3">Tambahkan pelanggan pertama untuk mulai membuat tagihan.</p>
+  <a class="btn btn-teal" href="{% url 'pelanggan:tambah' %}">+ Tambah pelanggan</a>
 </div>
 {% endif %}
 {% endblock %}

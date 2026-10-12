@@ -1,26 +1,39 @@
 {% extends "base.html" %}
 {% block judul %}{% if object %}Ubah pelanggan{% else %}Tambah pelanggan{% endif %}{% endblock %}
 {% block isi %}
-<h1 class="h4 mb-3">{% if object %}Ubah pelanggan{% else %}Tambah pelanggan{% endif %}</h1>
+<div class="halaman-judul tengah">
+  <div>
+    <h1>{% if object %}Ubah pelanggan{% else %}Tambah pelanggan{% endif %}</h1>
+    <p class="catatan">{% if object %}Perbarui data pelanggan dan paket langganannya.{% else %}Isi data pelanggan dan paket langganannya. Pelanggan baru otomatis berstatus Aktif.{% endif %}</p>
+  </div>
+</div>
 
-<form method="post" class="bg-white border rounded p-3" style="max-width: 640px;" novalidate>
+<form method="post" class="card kartu-form" novalidate>
   {% csrf_token %}
   {% if form.non_field_errors %}
-  <div class="alert alert-danger py-2">{{ form.non_field_errors.0 }}</div>
+  <div class="alert alert-danger">{{ form.non_field_errors.0 }}</div>
   {% endif %}
 
-  {% for kolom in form %}
-  <div class="mb-3">
-    <label class="form-label" for="{{ kolom.id_for_label }}">{{ kolom.label }}</label>
-    {{ kolom }}
-    {% if kolom.help_text %}<div class="form-text">{{ kolom.help_text }}</div>{% endif %}
-    {% for galat in kolom.errors %}
-    <div class="text-danger small">{{ galat }}</div>
-    {% endfor %}
-  </div>
-  {% endfor %}
+  <fieldset class="bagian-form">
+    <legend>Data pelanggan</legend>
+    <div class="form-grid">
+      {% include "komponen/kolom_form.html" with kolom=form.nama kelas="penuh" %}
+      {% include "komponen/kolom_form.html" with kolom=form.segmen %}
+      {% include "komponen/kolom_form.html" with kolom=form.tipe %}
+      {% include "komponen/kolom_form.html" with kolom=form.kontak kelas="penuh" %}
+      {% include "komponen/kolom_form.html" with kolom=form.alamat kelas="penuh" %}
+    </div>
+  </fieldset>
 
-  <div class="d-flex justify-content-end gap-2">
+  <fieldset class="bagian-form m-0">
+    <legend>Paket langganan</legend>
+    <div class="form-grid">
+      {% include "komponen/kolom_form.html" with kolom=form.paket %}
+      {% include "komponen/kolom_form.html" with kolom=form.jumlah_porsi %}
+    </div>
+  </fieldset>
+
+  <div class="form-aksi">
     <a class="btn btn-outline-secondary" href="{% url 'pelanggan:daftar' %}">Batal</a>
     <button type="submit" class="btn btn-teal">Simpan</button>
   </div>

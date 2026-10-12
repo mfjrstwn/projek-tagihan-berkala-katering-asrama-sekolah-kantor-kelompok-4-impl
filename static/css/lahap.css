@@ -199,8 +199,24 @@ table { font-variant-numeric: tabular-nums; }
 .tabel-data td.aksi a { font-weight: 600; text-decoration: none; }
 .tabel-data td.aksi a:hover { text-decoration: underline; }
 
-.paging { display: flex; justify-content: flex-end; align-items: center; gap: 1rem; margin-top: 1rem; font-size: .875rem; color: var(--lh-teks-redup); }
-.paging a { font-weight: 600; text-decoration: none; }
+.paging { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .75rem 1.5rem; margin-top: 1.1rem; }
+.paging-ringkas { color: var(--lh-teks-redup); font-size: .875rem; font-variant-numeric: tabular-nums; }
+.paging-ringkas strong { color: var(--lh-teks); font-weight: 700; }
+.paging-kontrol {                /* kontrol pil, sebahasa dengan menu atas Customer */
+  display: inline-flex; align-items: center; gap: 2px; padding: 4px;
+  background: var(--lh-permukaan); border: 1px solid var(--lh-garis); border-radius: 999px;
+}
+.hal {
+  display: inline-flex; align-items: center; justify-content: center; gap: .35rem; min-width: 2.25rem; height: 2.25rem; padding: 0 .5rem;
+  border-radius: 999px; color: var(--lh-teks-redup); font-size: .875rem; font-weight: 600; text-decoration: none;
+  font-variant-numeric: tabular-nums; transition: background-color .15s ease, color .15s ease;
+}
+a.hal:hover { background: var(--lh-teal-lembut); color: var(--lh-teal); }
+.hal.aktif { background: var(--lh-teal); color: #fff; }
+.hal.sisi { padding: 0 .9rem; }
+.hal.sisi svg { width: 1rem; height: 1rem; flex: none; }
+.hal.nonaktif { color: #A3ABA8; cursor: default; }
+.hal.titik { min-width: 1.5rem; padding: 0; }
 
 .keadaan-kosong { text-align: center; padding: 3rem 1rem; }
 .keadaan-kosong h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: .25rem; }
@@ -340,3 +356,30 @@ dialog.dialog::backdrop { background: rgba(31, 42, 40, .45); }
 .baris-aset:first-child { border-top: 0; padding-top: 0; }
 .baris-aset:last-child { padding-bottom: 0; }
 .baris-aset .jumlah { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ---------- 12. Daftar pelanggan (memakai pola tagihan/daftar) ---------- */
+.toolbar .cari { flex: 1 1 16rem; max-width: 22rem; }
+.aksi-baris { display: inline-flex; align-items: center; gap: 1.1rem; }
+.aksi-baris form { margin: 0; }
+.aksi-baris .btn-link { font-weight: 600; text-decoration: none; }
+.aksi-baris .btn-link:hover { text-decoration: underline; }
+.tabel-data td.aksi a.tautan-bahaya { color: var(--lh-tunggak-fg); }
+.baris-nonaktif td.nama { color: var(--lh-teks-redup); }
+.baris-nonaktif td { color: var(--lh-teks-redup); }
+
+/* ---------- 13. Form (patokan: pelanggan/form, dipakai juga form_umum) ---------- */
+.kartu-form { max-width: 46rem; margin: 0 auto; padding: 1.75rem 2rem; }
+.bagian-form { border: 0; padding: 0; margin: 0 0 1.5rem; }
+.bagian-form legend { float: none; width: auto; padding: 0; margin: 0 0 .9rem; font-size: .8125rem; font-weight: 700; color: var(--lh-teks-redup); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1.25rem; }
+.form-grid .penuh { grid-column: 1 / -1; }
+.kolom-form .form-label { display: block; }
+.kolom-form .form-text { margin-top: .35rem; color: var(--lh-teks-redup); font-size: .8125rem; }
+.galat { margin-top: .35rem; color: var(--lh-tunggak-fg); font-size: .8125rem; font-weight: 500; }
+.kolom-form.ada-galat .form-control, .kolom-form.ada-galat .form-select { border-color: var(--lh-tunggak-fg); }
+.kolom-form.ada-galat .form-control:focus, .kolom-form.ada-galat .form-select:focus { box-shadow: 0 0 0 .2rem rgba(154, 59, 34, .18); }
+.form-aksi { display: flex; justify-content: flex-end; gap: .5rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--lh-garis); }
+@media (max-width: 575.98px) {
+  .kartu-form { padding: 1.25rem; }
+  .form-grid { grid-template-columns: 1fr; }
+}

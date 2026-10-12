@@ -1,0 +1,7 @@
+{% comment %}Satu kolom form: label, widget, bantuan, galat. Pakai: {% include "komponen/kolom_form.html" with kolom=form.nama kelas="penuh" %}
+Kolom textarea otomatis selebar penuh. Kolom bermasalah diberi kelas ada-galat (garis tepi merah bata lewat CSS).{% endcomment %}<div class="kolom-form{% if kelas %} {{ kelas }}{% elif kolom.widget_type == 'textarea' %} penuh{% endif %}{% if kolom.errors %} ada-galat{% endif %}">
+  <label class="form-label" for="{{ kolom.id_for_label }}">{{ kolom.label }}</label>
+  {{ kolom }}
+  {% if kolom.help_text %}<div class="form-text">{{ kolom.help_text }}</div>{% endif %}
+  {% for galat in kolom.errors %}<div class="galat">{{ galat }}</div>{% endfor %}
+</div>

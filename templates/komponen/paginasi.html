@@ -1,0 +1,23 @@
+{% comment %}Paginasi berbentuk pil. Pakai: {% include "komponen/paginasi.html" with satuan="pelanggan" %}
+Butuh konteks ListView: is_paginated, page_obj, query_filter. Nomor halaman diringkas dengan titik tiga bila banyak.{% endcomment %}{% if is_paginated %}
+{% with cur=page_obj.number last=page_obj.paginator.num_pages %}
+<nav class="paging" aria-label="Halaman">
+  <div class="paging-ringkas">Menampilkan <strong>{{ page_obj.start_index }}&ndash;{{ page_obj.end_index }}</strong> dari <strong>{{ page_obj.paginator.count }}</strong> {{ satuan|default:"data" }}</div>
+  <div class="paging-kontrol">
+    <span class="visually-hidden">Halaman {{ cur }} dari {{ last }}</span>
+    {% if page_obj.has_previous %}<a class="hal sisi" rel="prev" href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ page_obj.previous_page_number }}"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg><span>Sebelumnya</span></a>{% else %}<span class="hal sisi nonaktif" aria-disabled="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg><span>Sebelumnya</span></span>{% endif %}
+    {% with a=cur|add:"-1" b=cur|add:"1" c=cur|add:"-2" d=cur|add:"2" %}
+    {% for n in page_obj.paginator.page_range %}
+      {% if n == cur %}<span class="hal aktif" aria-current="page">{{ n }}</span>
+      {% elif n == 1 or n == last or n >= a and n <= b %}<a class="hal" href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ n }}">{{ n }}</a>
+      {% elif n == 2 and cur == 4 %}<a class="hal" href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ n }}">{{ n }}</a>
+      {% elif n|add:"1" == last and cur|add:"3" == last %}<a class="hal" href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ n }}">{{ n }}</a>
+      {% elif n == c or n == d %}<span class="hal titik" aria-hidden="true">&hellip;</span>
+      {% endif %}
+    {% endfor %}
+    {% endwith %}
+    {% if page_obj.has_next %}<a class="hal sisi" rel="next" href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ page_obj.next_page_number }}"><span>Berikutnya</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></a>{% else %}<span class="hal sisi nonaktif" aria-disabled="true"><span>Berikutnya</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></span>{% endif %}
+  </div>
+</nav>
+{% endwith %}
+{% endif %}

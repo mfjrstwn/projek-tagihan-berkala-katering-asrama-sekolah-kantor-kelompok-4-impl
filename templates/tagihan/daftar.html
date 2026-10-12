@@ -54,13 +54,7 @@
   </table>
 </div>
 
-{% if is_paginated %}
-<nav class="paging" aria-label="Halaman">
-  {% if page_obj.has_previous %}<a href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ page_obj.previous_page_number }}">Sebelumnya</a>{% endif %}
-  <span>Halaman {{ page_obj.number }} dari {{ page_obj.paginator.num_pages }}</span>
-  {% if page_obj.has_next %}<a href="?{% if query_filter %}{{ query_filter }}&{% endif %}page={{ page_obj.next_page_number }}">Berikutnya</a>{% endif %}
-</nav>
-{% endif %}
+{% include "komponen/paginasi.html" with satuan="tagihan" %}
 {% else %}
 <div class="card keadaan-kosong">
   <h2>Belum ada tagihan</h2>
