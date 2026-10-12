@@ -315,3 +315,28 @@ dialog.dialog::backdrop { background: rgba(31, 42, 40, .45); }
 .ikon-bulat svg { width: 1.6rem; height: 1.6rem; }
 .halaman-pesan h1 { font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; margin: 0 0 .4rem; }
 .halaman-pesan p { color: var(--lh-teks-redup); margin: 0 0 1.5rem; }
+
+/* ---------- 11. Dashboard Admin (patokan: laporan/dashboard) ---------- */
+.dash-ringkas { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-bottom: 1.75rem; }
+.kartu-isi { padding: 1.25rem 1.5rem; }
+.dash-utama { display: flex; flex-direction: column; justify-content: center; }
+.dash-utama .angka-besar { font-size: 2.25rem; }
+.progres { height: .6rem; margin: 1.1rem 0 .6rem; border-radius: 999px; background: var(--lh-netral-bg); overflow: hidden; }
+.progres > span { display: block; height: 100%; border-radius: 999px; background: var(--lh-lunas-fg); }
+.progres-ket { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1rem; color: var(--lh-teks-redup); font-size: .875rem; }
+.progres-ket strong { color: var(--lh-teks); font-variant-numeric: tabular-nums; }
+.dash-sisi { display: grid; grid-template-rows: 1fr 1fr; gap: 1rem; }
+.dash-sisi .angka-besar { font-size: 1.75rem; }
+.dash-sisi .satuan { color: var(--lh-teks-redup); font-size: .875rem; font-weight: 500; letter-spacing: 0; }
+.angka-tunggak { color: var(--lh-tunggak-fg); }
+.tautan-kartu { display: inline-block; margin-top: .4rem; font-size: .875rem; font-weight: 600; text-decoration: none; }
+.tautan-kartu:hover { text-decoration: underline; }
+
+.dash-bawah { display: grid; grid-template-columns: 1.7fr 1fr; gap: 1.5rem; align-items: start; }
+.judul-baris { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .75rem; }
+.judul-baris .judul-bagian { margin: 0; }
+.judul-baris a { font-size: .875rem; font-weight: 600; text-decoration: none; }
+.baris-aset { display: flex; justify-content: space-between; align-items: center; padding: .8rem 0; border-top: 1px solid var(--lh-garis); }
+.baris-aset:first-child { border-top: 0; padding-top: 0; }
+.baris-aset:last-child { padding-bottom: 0; }
+.baris-aset .jumlah { font-weight: 700; font-variant-numeric: tabular-nums; }
