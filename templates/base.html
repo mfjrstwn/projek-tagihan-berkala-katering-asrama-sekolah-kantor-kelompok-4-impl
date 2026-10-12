@@ -44,9 +44,9 @@
   <main class="app-main">
     {% if user.is_authenticated and user.role == "Customer" %}
     <nav class="top-nav mb-4" aria-label="Menu utama">
-      <a class="{% if view_name == 'tagihan:saya' %}aktif{% endif %}" href="{% url 'tagihan:saya' %}">Tagihan saya</a>
-      <a class="{% if view_name == 'paket:saya' %}aktif{% endif %}" href="{% url 'paket:saya' %}">Paket dan tarif</a>
-      <a class="{% if view_name == 'pelanggan:data_diri' %}aktif{% endif %}" href="{% url 'pelanggan:data_diri' %}">Data diri</a>
+      <a class="{% if view_name == 'tagihan:saya' %}aktif{% endif %}" href="{% url 'tagihan:saya' %}"{% if view_name == 'tagihan:saya' %} aria-current="page"{% endif %}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg><span>Tagihan saya</span></a>
+      <a class="{% if view_name == 'paket:saya' %}aktif{% endif %}" href="{% url 'paket:saya' %}"{% if view_name == 'paket:saya' %} aria-current="page"{% endif %}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 4h8l10 10-7 7L3 11z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg><span>Paket dan tarif</span></a>
+      <a class="{% if view_name == 'pelanggan:data_diri' %}aktif{% endif %}" href="{% url 'pelanggan:data_diri' %}"{% if view_name == 'pelanggan:data_diri' %} aria-current="page"{% endif %}><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span>Data diri</span></a>
     </nav>
     {% endif %}
 

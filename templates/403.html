@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block judul %}Akses ditolak{% endblock %}
 {% block isi %}
-<h1 class="h4">Akses ditolak</h1>
-<p class="text-secondary">Halaman ini tidak tersedia untuk peran Anda.</p>
-<a class="btn btn-teal" href="{% url 'akun:beranda' %}">Kembali ke beranda</a>
+<div class="card halaman-pesan">
+  <div class="ikon-bulat">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+  </div>
+  <h1>Akses ditolak</h1>
+  <p>Halaman ini tidak tersedia untuk peran Anda.</p>
+  <a class="btn btn-teal" href="{% url 'akun:beranda' %}">Kembali ke beranda</a>
+</div>
 {% endblock %}
