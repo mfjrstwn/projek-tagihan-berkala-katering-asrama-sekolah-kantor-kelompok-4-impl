@@ -1,32 +1,33 @@
 {% extends "base.html" %}
 {% block judul %}Aset tetap{% endblock %}
 {% block isi %}
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h1 class="h4 m-0">Aset tetap</h1>
+<div class="halaman-judul">
+  <div>
+    <h1>Aset tetap</h1>
+    <p class="catatan">Catat peralatan katering beserta kondisinya agar mudah dipantau.</p>
+  </div>
   <a class="btn btn-teal" href="{% url 'aset:tambah' %}">+ Tambah aset</a>
 </div>
 
 {% if daftar_aset %}
 <div class="table-responsive bg-white border rounded">
-  <table class="table table-hover align-middle m-0">
+  <table class="table table-hover tabel-data align-middle m-0">
     <thead class="table-light">
-      <tr><th>Nama</th><th>Kategori</th><th>Perolehan</th><th>Nilai</th><th>Kondisi</th><th>Aksi</th></tr>
+      <tr><th>Nama</th><th>Kategori</th><th>Perolehan</th><th class="angka">Nilai</th><th>Kondisi</th><th>Aksi</th></tr>
     </thead>
     <tbody>
       {% for a in daftar_aset %}
       <tr>
-        <td>{{ a.nama }}</td>
+        <td class="nama">{{ a.nama }}</td>
         <td>{{ a.kategori }}</td>
-        <td>{{ a.tgl_perolehan|date:"d M Y" }}</td>
-        <td>Rp {{ a.nilai|floatformat:"0g" }}</td>
-        <td>
-          {% if a.kondisi == "Baik" %}<span class="badge text-bg-success">Baik</span>
-          {% elif a.kondisi == "Rusak" %}<span class="badge text-bg-danger">Rusak</span>
-          {% else %}<span class="badge text-bg-warning">{{ a.kondisi }}</span>{% endif %}
-        </td>
-        <td class="text-nowrap">
-          <a href="{% url 'aset:ubah' a.pk %}">Ubah</a>
-          | <a class="text-danger" href="{% url 'aset:hapus' a.pk %}">Hapus</a>
+        <td class="redup">{{ a.tgl_perolehan|date:"d M Y" }}</td>
+        <td class="angka">Rp {{ a.nilai|floatformat:"0g" }}</td>
+        <td>{% include "komponen/badge_status.html" with status=a.kondisi %}</td>
+        <td class="aksi text-nowrap">
+          <span class="aksi-baris">
+            <a href="{% url 'aset:ubah' a.pk %}">Ubah</a>
+            <a class="tautan-bahaya" href="{% url 'aset:hapus' a.pk %}" data-dialog>Hapus</a>
+          </span>
         </td>
       </tr>
       {% endfor %}
@@ -34,20 +35,12 @@
   </table>
 </div>
 
-{% if is_paginated %}
-<nav class="d-flex justify-content-end gap-3 small mt-3">
-  {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">Sebelumnya</a>{% endif %}
-  <span>Halaman {{ page_obj.number }} dari {{ page_obj.paginator.num_pages }}</span>
-  {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">Berikutnya</a>{% endif %}
-</nav>
-{% endif %}
+{% include "komponen/paginasi.html" with satuan="aset" %}
 {% else %}
-<div class="card text-center py-5">
-  <div class="card-body">
-    <h2 class="h5">Belum ada aset</h2>
-    <p class="text-secondary">Catat peralatan katering agar kondisinya terpantau.</p>
-    <a class="btn btn-teal" href="{% url 'aset:tambah' %}">+ Tambah aset</a>
-  </div>
+<div class="card keadaan-kosong">
+  <h2>Belum ada aset</h2>
+  <p class="text-secondary mb-3">Catat peralatan katering agar kondisinya terpantau.</p>
+  <a class="btn btn-teal" href="{% url 'aset:tambah' %}">+ Tambah aset</a>
 </div>
 {% endif %}
 {% endblock %}
