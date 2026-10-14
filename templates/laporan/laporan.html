@@ -2,75 +2,88 @@
 {% load format_tagihan %}
 {% block judul %}Laporan{% endblock %}
 {% block isi %}
-<h1 class="h4 mb-3">Laporan tagihan</h1>
+<div class="halaman-judul">
+  <div>
+    <h1>Laporan tagihan</h1>
+    <p class="catatan">Rekap tagihan per segmen untuk {{ periode|label_periode }}.</p>
+  </div>
+</div>
 
-<form method="get" class="row g-2 mb-3">
-  <div class="col-auto">
-    <select name="periode" class="form-select">
-      {% for p in periode_pilihan %}
-      <option value="{{ p }}" {% if p == periode %}selected{% endif %}>Periode: {{ p|label_periode }}</option>
-      {% endfor %}
-    </select>
-  </div>
-  <div class="col-auto">
-    <select name="segmen" class="form-select">
-      <option value="">Segmen: semua</option>
-      {% for nilai, nama in segmen_pilihan %}
-      <option value="{{ nilai }}" {% if nilai == segmen_dipilih %}selected{% endif %}>{{ nama }}</option>
-      {% endfor %}
-    </select>
-  </div>
-  <div class="col-auto d-flex gap-2">
-    <button type="submit" class="btn btn-outline-secondary">Tampilkan</button>
-    <a class="btn btn-link" href="{% url 'laporan:laporan' %}">Reset</a>
-  </div>
+<form method="get" class="toolbar">
+  <select name="periode" class="form-select" aria-label="Periode">
+    {% for p in periode_pilihan %}
+    <option value="{{ p }}" {% if p == periode %}selected{% endif %}>Periode: {{ p|label_periode }}</option>
+    {% endfor %}
+  </select>
+  <select name="segmen" class="form-select" aria-label="Segmen">
+    <option value="">Segmen: semua</option>
+    {% for nilai, nama in segmen_pilihan %}
+    <option value="{{ nilai }}" {% if nilai == segmen_dipilih %}selected{% endif %}>{{ nama }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit" class="btn btn-outline-secondary">Tampilkan</button>
+  <a class="btn btn-link" href="{% url 'laporan:laporan' %}">Reset</a>
 </form>
 
 {% if baris %}
-<div class="row g-3 mb-4">
-  <div class="col-md-4"><div class="card"><div class="card-body">
-    <div class="text-secondary small">Total tagihan</div><div class="fs-5">Rp {{ total.total|floatformat:"0g" }}</div>
-  </div></div></div>
-  <div class="col-md-4"><div class="card"><div class="card-body">
-    <div class="text-secondary small">Lunas</div><div class="fs-5">Rp {{ total.lunas|floatformat:"0g" }}</div>
-  </div></div></div>
-  <div class="col-md-4"><div class="card"><div class="card-body">
-    <div class="text-secondary small">Menunggak</div><div class="fs-5">Rp {{ total.menunggak|floatformat:"0g" }}</div>
-  </div></div></div>
+<div class="dash-ringkas">
+  <div class="card kartu-isi dash-utama">
+    <div class="label-kecil">Total tagihan</div>
+    <div class="angka-besar">Rp {{ total.total|floatformat:"0g" }}</div>
+    {% widthratio total.lunas total.total 100 as p_lunas %}
+    {% widthratio total.belum total.total 100 as p_belum %}
+    {% widthratio total.menunggak total.total 100 as p_tunggak %}
+    <div class="bar-komposisi" role="img" aria-label="Komposisi status tagihan: {{ p_lunas }} persen lunas, {{ p_belum }} persen belum dibayar, {{ p_tunggak }} persen menunggak">
+      {% if total.lunas %}<span class="seg-lunas" style="flex: {{ p_lunas }} 1 0"></span>{% endif %}
+      {% if total.belum %}<span class="seg-belum" style="flex: {{ p_belum }} 1 0"></span>{% endif %}
+      {% if total.menunggak %}<span class="seg-tunggak" style="flex: {{ p_tunggak }} 1 0"></span>{% endif %}
+    </div>
+    <div class="legenda">
+      <span class="legenda-item lunas">Lunas <strong>Rp {{ total.lunas|floatformat:"0g" }}</strong></span>
+      <span class="legenda-item belum">Belum dibayar <strong>Rp {{ total.belum|floatformat:"0g" }}</strong></span>
+      <span class="legenda-item tunggak">Menunggak <strong>Rp {{ total.menunggak|floatformat:"0g" }}</strong></span>
+    </div>
+  </div>
+  <div class="card kartu-isi dash-sisi-satu">
+    <div class="label-kecil">Jumlah tagihan</div>
+    <div class="angka-besar">{{ total.jumlah }}</div>
+    <div class="catatan-kecil">{{ p_lunas }}% sudah lunas</div>
+  </div>
 </div>
 
 <div class="table-responsive bg-white border rounded">
-  <table class="table align-middle m-0">
+  <table class="table table-hover tabel-data align-middle m-0">
     <thead class="table-light">
-      <tr><th>Segmen</th><th>Tagihan</th><th>Total</th><th>Lunas</th><th>Belum dibayar</th><th>Menunggak</th></tr>
+      <tr><th>Segmen</th><th class="angka">Tagihan</th><th class="angka">Total</th><th class="angka">Lunas</th><th class="angka">Belum dibayar</th><th class="angka">Menunggak</th></tr>
     </thead>
     <tbody>
       {% for b in baris %}
       <tr>
-        <td>{{ b.segmen }}</td>
-        <td>{{ b.jumlah }}</td>
-        <td>Rp {{ b.total|floatformat:"0g" }}</td>
-        <td>Rp {{ b.lunas|floatformat:"0g" }}</td>
-        <td>Rp {{ b.belum|floatformat:"0g" }}</td>
-        <td>Rp {{ b.menunggak|floatformat:"0g" }}</td>
+        <td class="nama">{{ b.segmen }}</td>
+        <td class="angka">{{ b.jumlah }}</td>
+        <td class="angka">Rp {{ b.total|floatformat:"0g" }}</td>
+        <td class="angka">Rp {{ b.lunas|floatformat:"0g" }}</td>
+        <td class="angka">Rp {{ b.belum|floatformat:"0g" }}</td>
+        <td class="angka{% if b.menunggak %} tunggak{% endif %}">Rp {{ b.menunggak|floatformat:"0g" }}</td>
       </tr>
       {% endfor %}
     </tbody>
-    <tfoot class="table-light fw-semibold">
+    <tfoot>
       <tr>
-        <td>Jumlah</td><td>{{ total.jumlah }}</td>
-        <td>Rp {{ total.total|floatformat:"0g" }}</td>
-        <td>Rp {{ total.lunas|floatformat:"0g" }}</td>
-        <td>Rp {{ total.belum|floatformat:"0g" }}</td>
-        <td>Rp {{ total.menunggak|floatformat:"0g" }}</td>
+        <td>Jumlah</td>
+        <td class="angka">{{ total.jumlah }}</td>
+        <td class="angka">Rp {{ total.total|floatformat:"0g" }}</td>
+        <td class="angka">Rp {{ total.lunas|floatformat:"0g" }}</td>
+        <td class="angka">Rp {{ total.belum|floatformat:"0g" }}</td>
+        <td class="angka">Rp {{ total.menunggak|floatformat:"0g" }}</td>
       </tr>
     </tfoot>
   </table>
 </div>
 {% else %}
-<div class="card text-center py-5"><div class="card-body">
-  <h2 class="h5">Tidak ada hasil</h2>
-  <p class="text-secondary m-0">Coba kata kunci atau filter lain.</p>
-</div></div>
+<div class="card keadaan-kosong">
+  <h2>Tidak ada hasil</h2>
+  <p class="text-secondary m-0">Coba periode atau segmen lain.</p>
+</div>
 {% endif %}
 {% endblock %}
