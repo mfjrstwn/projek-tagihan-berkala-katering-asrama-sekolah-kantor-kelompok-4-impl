@@ -9,7 +9,7 @@ Langkah menjalankan:
 bash
 # 1. Ambil proyek
 git clone https://github.com/mfjrstwn/projek-tagihan-berkala-katering-asrama-sekolah-kantor-kelompok-4-impl.git
-cd lahap-in
+cd "alamat folder clone dari github tadi(cek di file explorer untuk alamat nya)"
 
 # 2. Buat virtual environment
 python -m venv venv
