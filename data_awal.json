@@ -1,0 +1,2323 @@
+[
+{
+  "model": "akun.pengguna",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$NpqTIHOmE2efs6Sr4pE2PF$1oAjOWBobeB3Y0irIZFYksJIlYMciCNtQuYdBKaKlx8=",
+    "last_login": "2026-10-14T07:51:55.682Z",
+    "is_superuser": true,
+    "username": "atmin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-10-06T11:17:38.731Z",
+    "role": "Admin",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "akun.pengguna",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$LBsCCdFuSezFU2Z7s1a4kQ$pMEjcbb1zHXu3ZH8RPEyIb6PO3X6oembgRP1sM1URoo=",
+    "last_login": "2026-10-06T12:18:18Z",
+    "is_superuser": false,
+    "username": "testing",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-10-06T12:17:13Z",
+    "role": "Customer",
+    "groups": [],
+    "user_permissions": [
+      1,
+      2,
+      3,
+      4,
+      21,
+      22,
+      23,
+      24,
+      37,
+      38,
+      39,
+      40,
+      9,
+      10,
+      11,
+      12,
+      5,
+      6,
+      7,
+      8,
+      13,
+      14,
+      15,
+      16,
+      25,
+      26,
+      27,
+      28,
+      33,
+      34,
+      35,
+      36,
+      29,
+      30,
+      31,
+      32,
+      17,
+      18,
+      19,
+      20,
+      41,
+      42,
+      43,
+      44
+    ]
+  }
+},
+{
+  "model": "akun.pengguna",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$lYEBjWv8SQj4JyozpSRFn5$UJJE29bkpJZXDdb7QFQQPIpUffuFfTT1hCikTLQw3AQ=",
+    "last_login": "2026-10-14T07:28:38.522Z",
+    "is_superuser": false,
+    "username": "admin_demo",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-10-07T09:19:47.042Z",
+    "role": "Admin",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "akun.pengguna",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$aUp6TVM5Zn6vZ8UKmOfxRL$rCFquzObg9vj1Tsbu66qW7CPCO9X5zuuA97skDYp+vQ=",
+    "last_login": "2026-10-14T07:25:54.853Z",
+    "is_superuser": false,
+    "username": "dewi",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-10-07T09:19:47.512Z",
+    "role": "Customer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "akun.pengguna",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$cdHntaAkQrKyVKaeu0nFYV$byNU9fckSjZNndZr3g5klUexSKpHDBTpGmt97TXmm7o=",
+    "last_login": "2026-10-08T08:35:16.500Z",
+    "is_superuser": false,
+    "username": "rizky",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-10-07T09:19:47.951Z",
+    "role": "Customer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "akun.pengguna",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$ac84POFMmvYE8BIJiLhGSJ$PopJRVOekIsDR/Em5DoTLnaPxXcMiAi7SPwZQfstKCc=",
+    "last_login": "2026-10-08T08:35:38.021Z",
+    "is_superuser": false,
+    "username": "sma_harapan",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-10-07T09:19:48.391Z",
+    "role": "Customer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "paket.paket",
+  "pk": 2,
+  "fields": {
+    "nama_paket": "Instansi",
+    "tarif": "18000.00",
+    "satuan_tarif": "Per porsi",
+    "periode": "Bulanan"
+  }
+},
+{
+  "model": "paket.paket",
+  "pk": 3,
+  "fields": {
+    "nama_paket": "Makan siang",
+    "tarif": "450000.00",
+    "satuan_tarif": "Per bulan",
+    "periode": "Bulanan"
+  }
+},
+{
+  "model": "paket.paket",
+  "pk": 4,
+  "fields": {
+    "nama_paket": "Siang + malam",
+    "tarif": "800000.00",
+    "satuan_tarif": "Per bulan",
+    "periode": "Bulanan"
+  }
+},
+{
+  "model": "paket.paket",
+  "pk": 6,
+  "fields": {
+    "nama_paket": "Sarapan",
+    "tarif": "250000.00",
+    "satuan_tarif": "Per bulan",
+    "periode": "Bulanan"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "nama": "fajar",
+    "segmen": "Sekolah",
+    "tipe": "Perorangan",
+    "kontak": "081234567890",
+    "alamat": "jalan karya 1 gang miduk 1, bukit raya, simpang tiga, marpoyan, pekanbaru",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-06T12:20:11.688Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "nama": "Dewi Anggraini",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450001",
+    "alamat": "Asrama Putri Melati",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:46.954Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "nama": "Rizky Pratama",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450002",
+    "alamat": "Asrama Putra Mawar",
+    "status": "Nonaktif",
+    "dibuat_pada": "2026-10-07T09:19:46.958Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 5,
+  "fields": {
+    "user": null,
+    "nama": "Siti Nurhaliza",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450003",
+    "alamat": "Asrama Mahasiswa Kenanga",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:46.960Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 6,
+  "fields": {
+    "user": null,
+    "nama": "Budi Santoso",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450004",
+    "alamat": "Asrama Putri Melati",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:46.963Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 7,
+  "fields": {
+    "user": null,
+    "nama": "Ayu Lestari",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450005",
+    "alamat": "Asrama Putra Mawar",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:46.965Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 8,
+  "fields": {
+    "user": null,
+    "nama": "Andi Wijaya",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450006",
+    "alamat": "Asrama Mahasiswa Kenanga",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:46.968Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 9,
+  "fields": {
+    "user": null,
+    "nama": "Nadia Putri",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450007",
+    "alamat": "Asrama Putri Melati",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:46.971Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 10,
+  "fields": {
+    "user": null,
+    "nama": "Fajar Ramadhan",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450008",
+    "alamat": "Asrama Putra Mawar",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:46.974Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 11,
+  "fields": {
+    "user": null,
+    "nama": "Intan Permata",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450009",
+    "alamat": "Asrama Mahasiswa Kenanga",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:46.977Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 12,
+  "fields": {
+    "user": null,
+    "nama": "Rahmat Hidayat",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450010",
+    "alamat": "Asrama Putri Melati",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:46.979Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 13,
+  "fields": {
+    "user": null,
+    "nama": "Maya Sari",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450011",
+    "alamat": "Asrama Putra Mawar",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:46.981Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 14,
+  "fields": {
+    "user": null,
+    "nama": "Dimas Prasetyo",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450012",
+    "alamat": "Asrama Mahasiswa Kenanga",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:46.984Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 15,
+  "fields": {
+    "user": null,
+    "nama": "Putri Amelia",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450013",
+    "alamat": "Asrama Putri Melati",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:46.987Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 16,
+  "fields": {
+    "user": null,
+    "nama": "Yoga Saputra",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450014",
+    "alamat": "Asrama Putra Mawar",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:47.004Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 17,
+  "fields": {
+    "user": null,
+    "nama": "Lina Marlina",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450015",
+    "alamat": "Asrama Mahasiswa Kenanga",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:47.009Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 18,
+  "fields": {
+    "user": null,
+    "nama": "Hendra Gunawan",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450016",
+    "alamat": "Asrama Putri Melati",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:47.012Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 19,
+  "fields": {
+    "user": null,
+    "nama": "Citra Dewanti",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450017",
+    "alamat": "Asrama Putra Mawar",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:47.015Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 21,
+  "fields": {
+    "user": 6,
+    "nama": "SMA Harapan Bangsa",
+    "segmen": "Sekolah",
+    "tipe": "Instansi",
+    "kontak": "08123450019",
+    "alamat": "Jl. Pendidikan No. 10",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:47.018Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 22,
+  "fields": {
+    "user": null,
+    "nama": "SMP Tunas Mulia",
+    "segmen": "Sekolah",
+    "tipe": "Instansi",
+    "kontak": "08123450020",
+    "alamat": "Jl. Pendidikan No. 11",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:47.021Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 23,
+  "fields": {
+    "user": null,
+    "nama": "SD Cahaya Bangsa",
+    "segmen": "Sekolah",
+    "tipe": "Instansi",
+    "kontak": "08123450021",
+    "alamat": "Jl. Pendidikan No. 12",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:47.024Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 24,
+  "fields": {
+    "user": null,
+    "nama": "MA Al-Hikmah",
+    "segmen": "Sekolah",
+    "tipe": "Instansi",
+    "kontak": "08123450022",
+    "alamat": "Jl. Pendidikan No. 13",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:47.026Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 25,
+  "fields": {
+    "user": null,
+    "nama": "PT Maju Bersama",
+    "segmen": "Kantor",
+    "tipe": "Instansi",
+    "kontak": "08123450023",
+    "alamat": "Jl. Niaga No. 5",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:47.029Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 26,
+  "fields": {
+    "user": null,
+    "nama": "CV Karya Mandiri",
+    "segmen": "Kantor",
+    "tipe": "Instansi",
+    "kontak": "08123450024",
+    "alamat": "Jl. Niaga No. 6",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:47.031Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 27,
+  "fields": {
+    "user": null,
+    "nama": "Kantor Desa Sukamaju",
+    "segmen": "Kantor",
+    "tipe": "Instansi",
+    "kontak": "08123450025",
+    "alamat": "Jl. Niaga No. 7",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:19:47.034Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 28,
+  "fields": {
+    "user": null,
+    "nama": "boja",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "081234567890",
+    "alamat": "jalan itulah",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:48:20.838Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 29,
+  "fields": {
+    "user": null,
+    "nama": "Eko Susanto",
+    "segmen": "Asrama",
+    "tipe": "Perorangan",
+    "kontak": "08123450018",
+    "alamat": "Asrama Mahasiswa Kenanga",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-07T09:52:48.586Z"
+  }
+},
+{
+  "model": "pelanggan.pelanggan",
+  "pk": 30,
+  "fields": {
+    "user": null,
+    "nama": "rafli romadon",
+    "segmen": "Sekolah",
+    "tipe": "Perorangan",
+    "kontak": "081234567890",
+    "alamat": "jalan delima",
+    "status": "Aktif",
+    "dibuat_pada": "2026-10-10T19:06:03.647Z"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 1,
+  "fields": {
+    "pelanggan": 1,
+    "paket": 2,
+    "tgl_mulai": "2026-10-06",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 4,
+  "fields": {
+    "pelanggan": 3,
+    "paket": 4,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 5,
+  "fields": {
+    "pelanggan": 4,
+    "paket": 3,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 6,
+  "fields": {
+    "pelanggan": 5,
+    "paket": 3,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 7,
+  "fields": {
+    "pelanggan": 6,
+    "paket": 4,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 8,
+  "fields": {
+    "pelanggan": 7,
+    "paket": 3,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 9,
+  "fields": {
+    "pelanggan": 8,
+    "paket": 3,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 10,
+  "fields": {
+    "pelanggan": 9,
+    "paket": 4,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 11,
+  "fields": {
+    "pelanggan": 10,
+    "paket": 3,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 12,
+  "fields": {
+    "pelanggan": 11,
+    "paket": 3,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 13,
+  "fields": {
+    "pelanggan": 12,
+    "paket": 4,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 14,
+  "fields": {
+    "pelanggan": 13,
+    "paket": 3,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 15,
+  "fields": {
+    "pelanggan": 14,
+    "paket": 3,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 16,
+  "fields": {
+    "pelanggan": 15,
+    "paket": 4,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 17,
+  "fields": {
+    "pelanggan": 16,
+    "paket": 3,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 18,
+  "fields": {
+    "pelanggan": 17,
+    "paket": 3,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 19,
+  "fields": {
+    "pelanggan": 18,
+    "paket": 4,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 20,
+  "fields": {
+    "pelanggan": 19,
+    "paket": 3,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 22,
+  "fields": {
+    "pelanggan": 21,
+    "paket": 2,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": 350,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 23,
+  "fields": {
+    "pelanggan": 22,
+    "paket": 2,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": 280,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 24,
+  "fields": {
+    "pelanggan": 23,
+    "paket": 2,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": 220,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 25,
+  "fields": {
+    "pelanggan": 24,
+    "paket": 2,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": 300,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 26,
+  "fields": {
+    "pelanggan": 25,
+    "paket": 2,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": 240,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 27,
+  "fields": {
+    "pelanggan": 26,
+    "paket": 2,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": 150,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 28,
+  "fields": {
+    "pelanggan": 27,
+    "paket": 2,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": 90,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 29,
+  "fields": {
+    "pelanggan": 28,
+    "paket": 4,
+    "tgl_mulai": "2026-10-07",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 30,
+  "fields": {
+    "pelanggan": 29,
+    "paket": 3,
+    "tgl_mulai": "2026-08-01",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "pelanggan.langganan",
+  "pk": 31,
+  "fields": {
+    "pelanggan": 30,
+    "paket": 4,
+    "tgl_mulai": "2026-10-11",
+    "jumlah_porsi": null,
+    "status": "Aktif"
+  }
+},
+{
+  "model": "aset.aset",
+  "pk": 1,
+  "fields": {
+    "nama": "Kompor industri 2 tungku",
+    "kategori": "Produksi",
+    "tgl_perolehan": "2025-01-10",
+    "nilai": "4500000.00",
+    "kondisi": "Baik",
+    "catatan": ""
+  }
+},
+{
+  "model": "aset.aset",
+  "pk": 2,
+  "fields": {
+    "nama": "Rice cooker 35 L",
+    "kategori": "Produksi",
+    "tgl_perolehan": "2025-03-05",
+    "nilai": "3200000.00",
+    "kondisi": "Perlu perawatan",
+    "catatan": ""
+  }
+},
+{
+  "model": "aset.aset",
+  "pk": 3,
+  "fields": {
+    "nama": "Food tray stainless (200)",
+    "kategori": "Kemasan",
+    "tgl_perolehan": "2025-06-20",
+    "nilai": "2800000.00",
+    "kondisi": "Baik",
+    "catatan": ""
+  }
+},
+{
+  "model": "aset.aset",
+  "pk": 4,
+  "fields": {
+    "nama": "Motor box antar",
+    "kategori": "Distribusi",
+    "tgl_perolehan": "2024-08-15",
+    "nilai": "14000000.00",
+    "kondisi": "Rusak",
+    "catatan": ""
+  }
+},
+{
+  "model": "aset.aset",
+  "pk": 5,
+  "fields": {
+    "nama": "Freezer 2 pintu",
+    "kategori": "Penyimpanan",
+    "tgl_perolehan": "2025-02-01",
+    "nilai": "7500000.00",
+    "kondisi": "Baik",
+    "catatan": ""
+  }
+},
+{
+  "model": "aset.aset",
+  "pk": 6,
+  "fields": {
+    "nama": "Blender industri",
+    "kategori": "Produksi",
+    "tgl_perolehan": "2025-04-12",
+    "nilai": "2100000.00",
+    "kondisi": "Rusak",
+    "catatan": ""
+  }
+},
+{
+  "model": "aset.aset",
+  "pk": 7,
+  "fields": {
+    "nama": "Dispenser air",
+    "kategori": "Pendukung",
+    "tgl_perolehan": "2024-11-03",
+    "nilai": "1200000.00",
+    "kondisi": "Perlu perawatan",
+    "catatan": ""
+  }
+},
+{
+  "model": "aset.aset",
+  "pk": 8,
+  "fields": {
+    "nama": "Panci besar 50 L",
+    "kategori": "Produksi",
+    "tgl_perolehan": "2025-05-08",
+    "nilai": "950000.00",
+    "kondisi": "Baik",
+    "catatan": ""
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 1,
+  "fields": {
+    "langganan": 1,
+    "periode": "2026-10",
+    "jumlah": "1.00",
+    "tgl_terbit": "2026-10-06",
+    "jatuh_tempo": "2026-11-06",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 3,
+  "fields": {
+    "langganan": 1,
+    "periode": "2026-11",
+    "jumlah": "18000.00",
+    "tgl_terbit": "2026-10-06",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-10-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 4,
+  "fields": {
+    "langganan": 4,
+    "periode": "2026-08",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 5,
+  "fields": {
+    "langganan": 4,
+    "periode": "2026-09",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 6,
+  "fields": {
+    "langganan": 4,
+    "periode": "2026-10",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-10-02"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 7,
+  "fields": {
+    "langganan": 5,
+    "periode": "2026-08",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 8,
+  "fields": {
+    "langganan": 5,
+    "periode": "2026-09",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 9,
+  "fields": {
+    "langganan": 6,
+    "periode": "2026-08",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 10,
+  "fields": {
+    "langganan": 6,
+    "periode": "2026-09",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 11,
+  "fields": {
+    "langganan": 6,
+    "periode": "2026-10",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 12,
+  "fields": {
+    "langganan": 7,
+    "periode": "2026-08",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 13,
+  "fields": {
+    "langganan": 7,
+    "periode": "2026-09",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 14,
+  "fields": {
+    "langganan": 7,
+    "periode": "2026-10",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-10-02"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 15,
+  "fields": {
+    "langganan": 8,
+    "periode": "2026-08",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 16,
+  "fields": {
+    "langganan": 8,
+    "periode": "2026-09",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 17,
+  "fields": {
+    "langganan": 8,
+    "periode": "2026-10",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 18,
+  "fields": {
+    "langganan": 9,
+    "periode": "2026-08",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 19,
+  "fields": {
+    "langganan": 9,
+    "periode": "2026-09",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 20,
+  "fields": {
+    "langganan": 9,
+    "periode": "2026-10",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 21,
+  "fields": {
+    "langganan": 10,
+    "periode": "2026-08",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 22,
+  "fields": {
+    "langganan": 10,
+    "periode": "2026-09",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 23,
+  "fields": {
+    "langganan": 10,
+    "periode": "2026-10",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-10-02"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 24,
+  "fields": {
+    "langganan": 11,
+    "periode": "2026-08",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 25,
+  "fields": {
+    "langganan": 11,
+    "periode": "2026-09",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 26,
+  "fields": {
+    "langganan": 11,
+    "periode": "2026-10",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 27,
+  "fields": {
+    "langganan": 12,
+    "periode": "2026-08",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 28,
+  "fields": {
+    "langganan": 12,
+    "periode": "2026-09",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 29,
+  "fields": {
+    "langganan": 12,
+    "periode": "2026-10",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 30,
+  "fields": {
+    "langganan": 13,
+    "periode": "2026-08",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 31,
+  "fields": {
+    "langganan": 13,
+    "periode": "2026-09",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 32,
+  "fields": {
+    "langganan": 13,
+    "periode": "2026-10",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-10-02"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 33,
+  "fields": {
+    "langganan": 14,
+    "periode": "2026-08",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 34,
+  "fields": {
+    "langganan": 14,
+    "periode": "2026-09",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 35,
+  "fields": {
+    "langganan": 14,
+    "periode": "2026-10",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 36,
+  "fields": {
+    "langganan": 15,
+    "periode": "2026-08",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 37,
+  "fields": {
+    "langganan": 15,
+    "periode": "2026-09",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 38,
+  "fields": {
+    "langganan": 15,
+    "periode": "2026-10",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 39,
+  "fields": {
+    "langganan": 16,
+    "periode": "2026-08",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 40,
+  "fields": {
+    "langganan": 16,
+    "periode": "2026-09",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 41,
+  "fields": {
+    "langganan": 16,
+    "periode": "2026-10",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-10-02"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 42,
+  "fields": {
+    "langganan": 17,
+    "periode": "2026-08",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 43,
+  "fields": {
+    "langganan": 17,
+    "periode": "2026-09",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 44,
+  "fields": {
+    "langganan": 17,
+    "periode": "2026-10",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 45,
+  "fields": {
+    "langganan": 18,
+    "periode": "2026-08",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 46,
+  "fields": {
+    "langganan": 18,
+    "periode": "2026-09",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 47,
+  "fields": {
+    "langganan": 18,
+    "periode": "2026-10",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 48,
+  "fields": {
+    "langganan": 19,
+    "periode": "2026-08",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 49,
+  "fields": {
+    "langganan": 19,
+    "periode": "2026-09",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 50,
+  "fields": {
+    "langganan": 19,
+    "periode": "2026-10",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-10-02"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 51,
+  "fields": {
+    "langganan": 20,
+    "periode": "2026-08",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 52,
+  "fields": {
+    "langganan": 20,
+    "periode": "2026-09",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 53,
+  "fields": {
+    "langganan": 20,
+    "periode": "2026-10",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 54,
+  "fields": {
+    "langganan": 22,
+    "periode": "2026-08",
+    "jumlah": "6300000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 55,
+  "fields": {
+    "langganan": 22,
+    "periode": "2026-09",
+    "jumlah": "6300000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 56,
+  "fields": {
+    "langganan": 22,
+    "periode": "2026-10",
+    "jumlah": "6300000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-10-02"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 57,
+  "fields": {
+    "langganan": 23,
+    "periode": "2026-08",
+    "jumlah": "5040000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 58,
+  "fields": {
+    "langganan": 23,
+    "periode": "2026-09",
+    "jumlah": "5040000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 59,
+  "fields": {
+    "langganan": 23,
+    "periode": "2026-10",
+    "jumlah": "5040000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 60,
+  "fields": {
+    "langganan": 24,
+    "periode": "2026-08",
+    "jumlah": "3960000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 61,
+  "fields": {
+    "langganan": 24,
+    "periode": "2026-09",
+    "jumlah": "3960000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 62,
+  "fields": {
+    "langganan": 24,
+    "periode": "2026-10",
+    "jumlah": "3960000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 63,
+  "fields": {
+    "langganan": 25,
+    "periode": "2026-08",
+    "jumlah": "5400000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 64,
+  "fields": {
+    "langganan": 25,
+    "periode": "2026-09",
+    "jumlah": "5400000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 65,
+  "fields": {
+    "langganan": 25,
+    "periode": "2026-10",
+    "jumlah": "5400000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-10-02"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 66,
+  "fields": {
+    "langganan": 26,
+    "periode": "2026-08",
+    "jumlah": "4320000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 67,
+  "fields": {
+    "langganan": 26,
+    "periode": "2026-09",
+    "jumlah": "4320000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 68,
+  "fields": {
+    "langganan": 26,
+    "periode": "2026-10",
+    "jumlah": "4320000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 69,
+  "fields": {
+    "langganan": 27,
+    "periode": "2026-08",
+    "jumlah": "2700000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 70,
+  "fields": {
+    "langganan": 27,
+    "periode": "2026-09",
+    "jumlah": "2700000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 71,
+  "fields": {
+    "langganan": 27,
+    "periode": "2026-10",
+    "jumlah": "2700000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 72,
+  "fields": {
+    "langganan": 28,
+    "periode": "2026-08",
+    "jumlah": "1620000.00",
+    "tgl_terbit": "2026-08-01",
+    "jatuh_tempo": "2026-08-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-08-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 73,
+  "fields": {
+    "langganan": 28,
+    "periode": "2026-09",
+    "jumlah": "1620000.00",
+    "tgl_terbit": "2026-09-01",
+    "jatuh_tempo": "2026-09-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-09-08"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 74,
+  "fields": {
+    "langganan": 28,
+    "periode": "2026-10",
+    "jumlah": "1620000.00",
+    "tgl_terbit": "2026-10-01",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Lunas",
+    "tgl_lunas": "2026-10-02"
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 75,
+  "fields": {
+    "langganan": 5,
+    "periode": "2026-10",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 76,
+  "fields": {
+    "langganan": 29,
+    "periode": "2026-10",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 77,
+  "fields": {
+    "langganan": 30,
+    "periode": "2026-10",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 78,
+  "fields": {
+    "langganan": 4,
+    "periode": "2026-11",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 79,
+  "fields": {
+    "langganan": 5,
+    "periode": "2026-11",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 80,
+  "fields": {
+    "langganan": 6,
+    "periode": "2026-11",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 81,
+  "fields": {
+    "langganan": 7,
+    "periode": "2026-11",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 82,
+  "fields": {
+    "langganan": 8,
+    "periode": "2026-11",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 83,
+  "fields": {
+    "langganan": 10,
+    "periode": "2026-11",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 84,
+  "fields": {
+    "langganan": 11,
+    "periode": "2026-11",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 85,
+  "fields": {
+    "langganan": 12,
+    "periode": "2026-11",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 86,
+  "fields": {
+    "langganan": 13,
+    "periode": "2026-11",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 87,
+  "fields": {
+    "langganan": 14,
+    "periode": "2026-11",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 88,
+  "fields": {
+    "langganan": 15,
+    "periode": "2026-11",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 89,
+  "fields": {
+    "langganan": 16,
+    "periode": "2026-11",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 90,
+  "fields": {
+    "langganan": 17,
+    "periode": "2026-11",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 91,
+  "fields": {
+    "langganan": 18,
+    "periode": "2026-11",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 92,
+  "fields": {
+    "langganan": 19,
+    "periode": "2026-11",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 93,
+  "fields": {
+    "langganan": 20,
+    "periode": "2026-11",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 94,
+  "fields": {
+    "langganan": 22,
+    "periode": "2026-11",
+    "jumlah": "6300000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 95,
+  "fields": {
+    "langganan": 23,
+    "periode": "2026-11",
+    "jumlah": "5040000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 96,
+  "fields": {
+    "langganan": 24,
+    "periode": "2026-11",
+    "jumlah": "3960000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 97,
+  "fields": {
+    "langganan": 25,
+    "periode": "2026-11",
+    "jumlah": "5400000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 98,
+  "fields": {
+    "langganan": 26,
+    "periode": "2026-11",
+    "jumlah": "4320000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 99,
+  "fields": {
+    "langganan": 27,
+    "periode": "2026-11",
+    "jumlah": "2700000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 100,
+  "fields": {
+    "langganan": 28,
+    "periode": "2026-11",
+    "jumlah": "1620000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 101,
+  "fields": {
+    "langganan": 29,
+    "periode": "2026-11",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 102,
+  "fields": {
+    "langganan": 30,
+    "periode": "2026-11",
+    "jumlah": "450000.00",
+    "tgl_terbit": "2026-10-08",
+    "jatuh_tempo": "2026-11-10",
+    "status": "Belum dibayar",
+    "tgl_lunas": null
+  }
+},
+{
+  "model": "tagihan.tagihan",
+  "pk": 103,
+  "fields": {
+    "langganan": 31,
+    "periode": "2026-10",
+    "jumlah": "800000.00",
+    "tgl_terbit": "2026-10-11",
+    "jatuh_tempo": "2026-10-10",
+    "status": "Menunggak",
+    "tgl_lunas": null
+  }
+}
+]
