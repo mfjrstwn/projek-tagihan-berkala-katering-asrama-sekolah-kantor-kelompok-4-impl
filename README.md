@@ -28,7 +28,9 @@ git clone https://github.com/mfjrstwn/projek-tagihan-berkala-katering-asrama-sek
 Masuk ke folder hasil clone:
 
 cd projek-tagihan-berkala-katering-asrama-sekolah-kantor-kelompok-4-impl
-Buka folder proyek itu di VS Code: File → Open Folder lalu pilih folder projek-tagihan-...-impl. Pastikan terminal berikutnya terbuka di folder ini, yaitu folder yang berisi file manage.py.
+Buka folder proyek itu di VS Code: File → Open Folder lalu pilih folder projek-tagihan-berkala-katering-asrama-sekolah-kantor-kelompok-4-impl.
+
+Pastikan terminal berikutnya terbuka di folder ini, yaitu folder yang berisi file manage.py.
 
 
 ## C. Menyiapkan dan menjalankan proyek
