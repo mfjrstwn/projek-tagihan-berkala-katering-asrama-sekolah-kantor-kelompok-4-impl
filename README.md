@@ -8,7 +8,7 @@ Langkah menjalankan:
 
 bash
 # 1. Ambil proyek
-git clone https://github.com/USERNAME/lahap-in.git
+git clone https://github.com/mfjrstwn/projek-tagihan-berkala-katering-asrama-sekolah-kantor-kelompok-4-impl.git
 cd lahap-in
 
 # 2. Buat virtual environment
