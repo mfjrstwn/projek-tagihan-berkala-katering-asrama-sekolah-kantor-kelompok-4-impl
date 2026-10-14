@@ -93,7 +93,7 @@ VS Code tidak mengenali venv. Tekan Ctrl+Shift+P, ketik Python: Select Interpret
 
 Error saat pip install (misalnya versi Django tidak ditemukan). Biasanya Python terlalu lama. Cek versinya dengan python --version.
 
-E. Untuk kerja bareng setelah ini
+## E. Untuk kerja bareng setelah ini
 
 Mengambil pembaruan terbaru dari repo (jalankan di folder proyek):
 
