@@ -1,60 +1,65 @@
-Proyek ini dibuat dengan Django (Python), jadi teman-temanmu perlu menyiapkan Python, Git, dan VS Code. Repo-nya publik, jadi mereka bisa langsung clone tanpa diundang sebagai collaborator.
+## A. Persiapan (sekali saja)
 
-A. Persiapan (sekali saja)
-
-1. Install Python
+### 1. Install Python
 
 Unduh dari python.org/downloads.
 Saat instalasi, centang “Add Python to PATH”. Ini yang paling sering terlewat.
 Cek versinya di terminal dengan python --version. README menyebut Django 6.x butuh Python 3.12 ke atas. Kalau versinya lebih rendah, install ulang yang terbaru.
 
-2. Install Git
+### 2. Install Git
 
 Unduh dari git-scm.com, lalu install dengan pengaturan default.
 Cek dengan git --version.
 
-3. Install VS Code dan ekstensi Python
+### 3. Install VS Code dan ekstensi Python
 
 Buka VS Code, klik ikon Extensions (Ctrl+Shift+X), cari Python (dari Microsoft), lalu install.
 
-4. Pastikan ada internet saat menjalankan aplikasi, karena Bootstrap dan font dimuat lewat CDN.
+### 4. Pastikan ada internet saat menjalankan aplikasi, karena Bootstrap dan font dimuat lewat CDN.
 
-B. Ambil proyek dari GitHub
+## B. Ambil proyek dari GitHub
 Buat atau pilih folder tempat menyimpan proyek, misalnya D:\Projek.
 Di VS Code: File → Open Folder, pilih folder itu.
 Buka terminal di VS Code: Terminal → New Terminal (atau Ctrl+`).
 Jalankan:
+
 git clone https://github.com/mfjrstwn/projek-tagihan-berkala-katering-asrama-sekolah-kantor-kelompok-4-impl.git
+
 Masuk ke folder hasil clone:
+
 cd projek-tagihan-berkala-katering-asrama-sekolah-kantor-kelompok-4-impl
 Buka folder proyek itu di VS Code: File → Open Folder lalu pilih folder projek-tagihan-...-impl. Pastikan terminal berikutnya terbuka di folder ini, yaitu folder yang berisi file manage.py.
-C. Menyiapkan dan menjalankan proyek
+
+
+## C. Menyiapkan dan menjalankan proyek
 
 Semua perintah di bawah dijalankan di terminal VS Code, di dalam folder yang ada manage.py-nya.
 
-1. Buat virtual environment
+### 1. Buat virtual environment
 
 python -m venv venv
 
-2. Aktifkan virtual environment
+### 2. Aktifkan virtual environment
 
 Pilih sesuai terminal yang dipakai:
 
 venv\Scripts\activate            # CMD atau PowerShell
+
 source venv/Scripts/activate     # Git Bash
+
 source venv/bin/activate         # macOS / Linux
 
 Kalau berhasil, muncul tulisan (venv) di awal baris terminal.
 
-3. Pasang dependensi
+### 3. Pasang dependensi
 
 pip install -r requirements.txt
 
-4. Buat database
+### 4. Buat database
 
 python manage.py migrate
 
-5. Isi data awal (pilih salah satu)
+### 5. Isi data awal (pilih salah satu)
 
 python manage.py loaddata data_awal.json
 
@@ -64,13 +69,13 @@ python manage.py createsuperuser
 
 Kalau memakai data_awal.json, tanyakan ke pemilik proyek username dan password akun bawaannya.
 
-6. Jalankan server
+### 6. Jalankan server
 
 python manage.py runserver
 
 Buka http://127.0.0.1:8000 di browser. Untuk menghentikan server, tekan Ctrl + C di terminal.
 
-D. Kendala yang sering muncul
+## D. Kendala yang sering muncul
 
 “running scripts is disabled on this system” (PowerShell saat mengaktifkan venv). Jalankan ini sekali di terminal yang sama, lalu aktifkan venv lagi:
 
