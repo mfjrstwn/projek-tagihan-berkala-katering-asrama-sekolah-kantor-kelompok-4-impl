@@ -98,3 +98,49 @@ class HalamanAsetTest(TestCase):
         r = self.client.post(reverse("aset:hapus", args=[aset.pk]), follow=True)
         self.assertContains(r, "Data berhasil dihapus")
         self.assertFalse(Aset.objects.filter(pk=aset.pk).exists())
+
+
+class PencarianAsetTest(TestCase):
+    """Pencarian nama dan filter kondisi pada daftar aset."""
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.admin = Pengguna.objects.create_user(
+            "admin2", password="rahasia123", role=Pengguna.Peran.ADMIN
+        )
+
+    def setUp(self):
+        self.client.force_login(self.admin)
+        buat_aset("Kompor industri", Aset.Kondisi.BAIK)
+        buat_aset("Rice cooker", Aset.Kondisi.PERLU_PERAWATAN)
+        buat_aset("Motor antar", Aset.Kondisi.RUSAK)
+
+    def nama(self, **parameter):
+        r = self.client.get(reverse("aset:daftar"), parameter)
+        return sorted(a.nama for a in r.context["daftar_aset"])
+
+    def test_cari_nama_tanpa_peka_huruf_besar_kecil(self):
+        self.assertEqual(self.nama(q="KOMPOR"), ["Kompor industri"])
+
+    def test_filter_kondisi(self):
+        self.assertEqual(self.nama(kondisi="Rusak"), ["Motor antar"])
+
+    def test_cari_dan_kondisi_digabung(self):
+        self.assertEqual(self.nama(q="o", kondisi="Baik"), ["Kompor industri"])
+        self.assertEqual(self.nama(q="Kompor", kondisi="Rusak"), [])
+
+    def test_kondisi_tidak_valid_diabaikan(self):
+        self.assertEqual(len(self.nama(kondisi="Hilang")), 3)
+
+    def test_tanpa_hasil_menampilkan_pesan_filter_bukan_pesan_kosong(self):
+        r = self.client.get(reverse("aset:daftar"), {"q": "tidak ada"})
+        self.assertContains(r, "Tidak ada hasil")
+        self.assertNotContains(r, "Belum ada aset")
+
+    def test_filter_dipertahankan_antar_halaman(self):
+        for i in range(16):
+            buat_aset(f"Panci {i}")
+        r = self.client.get(reverse("aset:daftar"), {"q": "Panci", "page": 2})
+        self.assertEqual(r.status_code, 200)
+        self.assertEqual(r.context["query_filter"], "q=Panci")
+        self.assertEqual(len(r.context["daftar_aset"]), 1)

@@ -12,10 +12,42 @@ from .models import Aset
 
 
 class DaftarAsetView(AdminRequiredMixin, ListView):
+    """Daftar aset dengan pencarian nama dan filter kondisi."""
+
     model = Aset
     template_name = "aset/daftar.html"
     context_object_name = "daftar_aset"
     paginate_by = 15
+
+    def _filter(self):
+        kata = self.request.GET.get("q", "").strip()
+        kondisi = self.request.GET.get("kondisi", "")
+        if kondisi not in Aset.Kondisi.values:
+            kondisi = ""
+        return kata, kondisi
+
+    def get_queryset(self):
+        kata, kondisi = self._filter()
+        qs = super().get_queryset()
+        if kata:
+            qs = qs.filter(nama__icontains=kata)
+        if kondisi:
+            qs = qs.filter(kondisi=kondisi)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        kata, kondisi = self._filter()
+        parameter = self.request.GET.copy()
+        parameter.pop("page", None)
+        ctx.update(
+            kata=kata,
+            kondisi_dipilih=kondisi,
+            kondisi_pilihan=Aset.Kondisi.choices,
+            query_filter=parameter.urlencode(),
+            ada_filter=bool(kata or kondisi),
+        )
+        return ctx
 
 
 class TambahAsetView(AdminRequiredMixin, SuccessMessageMixin, CreateView):

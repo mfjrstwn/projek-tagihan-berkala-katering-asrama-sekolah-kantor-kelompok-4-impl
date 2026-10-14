@@ -59,3 +59,15 @@ class AksesPerPeranTest(TestCase):
         self.client.post(reverse("akun:keluar"))
         r = self.client.get(reverse("laporan:dashboard"))
         self.assertEqual(r.status_code, 302)
+
+
+from django.test import override_settings  # noqa: E402
+
+
+@override_settings(DEBUG=False)
+class HalamanTidakDitemukanTest(TestCase):
+    def test_alamat_yang_tidak_ada_memakai_templat_kustom(self):
+        r = self.client.get("/alamat-yang-tidak-ada/")
+        self.assertEqual(r.status_code, 404)
+        self.assertContains(r, "Halaman tidak ditemukan", status_code=404)
+        self.assertContains(r, "Kembali ke beranda", status_code=404)

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load format_tagihan %}
+{% load format_tagihan tampilan_paket %}
 {% block judul %}Tandai tagihan lunas{% endblock %}
 {% block isi %}
 <div class="dialog-latar">
@@ -12,10 +12,8 @@
       <form method="post" action="{{ request.get_full_path }}" novalidate>
         {% csrf_token %}
         <label class="form-label" for="{{ form.tanggal.id_for_label }}">{{ form.tanggal.label }}</label>
-        {{ form.tanggal }}
-        {% for galat in form.tanggal.errors %}
-        <div class="galat">{{ galat }}</div>
-        {% endfor %}
+        {{ form.tanggal|atribut_galat }}
+        {% if form.tanggal.errors %}<div id="galat-{{ form.tanggal.html_name }}">{% for galat in form.tanggal.errors %}<div class="galat">{{ galat }}</div>{% endfor %}</div>{% endif %}
         <div class="dialog-aksi">
           <a class="btn btn-outline-secondary" href="{% url 'tagihan:daftar' %}" data-dialog-tutup>Batal</a>
           <button type="submit" class="btn btn-teal">Tandai lunas</button>

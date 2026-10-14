@@ -179,3 +179,17 @@ class HalamanPelangganTest(TestCase):
         self.assertContains(r, "Pelanggan diaktifkan kembali")
         pel.refresh_from_db()
         self.assertEqual(pel.status, Pelanggan.Status.AKTIF)
+
+
+class AtributGalatFormTest(TestCase):
+    """Isian yang bermasalah terhubung ke pesan galatnya untuk pembaca layar."""
+
+    def test_isian_bermasalah_menunjuk_ke_pesan_galat(self):
+        admin = Pengguna.objects.create_user(
+            "admin_aria", password="rahasia123", role=Pengguna.Peran.ADMIN
+        )
+        self.client.force_login(admin)
+        r = self.client.post(reverse("pelanggan:tambah"), {"nama": ""})
+        self.assertContains(r, 'aria-invalid="true"')
+        self.assertContains(r, 'aria-describedby="galat-nama"')
+        self.assertContains(r, 'id="galat-nama"')

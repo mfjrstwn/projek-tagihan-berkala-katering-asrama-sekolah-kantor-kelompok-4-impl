@@ -9,6 +9,18 @@
   <a class="btn btn-teal" href="{% url 'aset:tambah' %}">+ Tambah aset</a>
 </div>
 
+<form method="get" class="toolbar">
+  <input type="search" name="q" value="{{ kata }}" class="form-control cari" placeholder="Cari nama aset" aria-label="Cari nama aset">
+  <select name="kondisi" class="form-select" aria-label="Kondisi">
+    <option value="">Kondisi: semua</option>
+    {% for nilai, nama in kondisi_pilihan %}
+    <option value="{{ nilai }}" {% if nilai == kondisi_dipilih %}selected{% endif %}>{{ nama }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit" class="btn btn-outline-secondary">Terapkan</button>
+  <a class="btn btn-link" href="{% url 'aset:daftar' %}">Reset</a>
+</form>
+
 {% if daftar_aset %}
 <div class="table-responsive bg-white border rounded">
   <table class="table table-hover tabel-data align-middle m-0">
@@ -36,6 +48,11 @@
 </div>
 
 {% include "komponen/paginasi.html" with satuan="aset" %}
+{% elif ada_filter %}
+<div class="card keadaan-kosong">
+  <h2>Tidak ada hasil</h2>
+  <p class="text-secondary m-0">Coba kata kunci atau filter lain.</p>
+</div>
 {% else %}
 <div class="card keadaan-kosong">
   <h2>Belum ada aset</h2>
